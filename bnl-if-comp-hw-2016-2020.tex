@@ -1,0 +1,828 @@
+\documentclass[pdftex,12pt,letter]{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{verbatim}
+\usepackage[pdftex,pdfpagelabels,bookmarks,hyperindex,hyperfigures]{hyperref}
+
+\newcommand{\fixme}[1]{\textbf{#1}}
+
+\setcounter{tocdepth}{1}
+
+\title{BNL Physics Department Intensity Frontier\\Computing Requirements for FY2017-2022}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+%\input{meta}
+
+\newpage
+\section{Overview}
+This report presents a few estimatea of the computing needs of
+the BNL Physics Department Intensity Frontier efforts for FYs
+2017-2022. The requirements presented are limited in scope to those
+that can be expected to be met by some manner of DOE funding which
+would come through BNL.
+
+Each of the following sections answers the information request for one
+experimental or R\&D effort in the BNL Intensity Frontier.
+Each gives a general description of the effort with a focus on its
+general computing requirements followed by a per-year breakdown of activity and
+milestones and an estimate of specific hardware requirements.
+
+\subsection{Current Status}
+
+The Intensity Frontier (IF) activities at BNL include the following
+experiments and research and development efforts:
+%
+Daya Bay,
+LAr1-ND/SBN,
+DUNE,
+MicroBooNE,
+Muon g-2,
+Prospect and
+WbLS R\&D.
+%
+Each of these projects are detailed in the following sections but some
+commonalities are worth noting here.
+
+Many of the individuals working on these projects participate in more
+than one.
+This can be done efficiently in part because there are many
+overlapping aspects.
+For example, MicroBooNE and DUNE  use the same detector
+simulation and reconstruction framework, and many of the same
+framework modules for their liquid argon detectors.
+
+
+This collection of projects can be placed across some spectrum from
+individual, one-off R\&D software to that needed for production
+processing and large scale data movement and storage.
+We have looked for ways to accommodate this spectrum in an efficient
+manner.  
+
+The main tool we rely on to do this is the RHIC/ATLAS Computing
+Facility (RACF).
+Because the RACF is so efficient they have been able to provide Daya
+Bay and LBNE a modest footprint for a low direct cost to the
+experiments.
+The nominal agreement is that the experiments pay for new hardware
+configured similarly and as part of larger purchases driven to support
+the main RACF tenants (ATLAS and the RHIC experiments).
+We then gain the benefit of ``free'' maintenance and support from
+RACF.
+To the extent that we do not add to the overall complexity of RACF we
+can be accommodated with minor incremental effort.
+The other aspects of our agreement is that once we grow large enough
+to require $\sim$0.1 FTE of support from RACF we must renegotiate our
+arrangement in order to explicitly contribute to support costs.
+For the five years this report covers, we do not expect to reach that
+threshold.  
+
+The final, somewhat fortuitous benefit which Daya Bay and LBNE
+currently enjoy with RACF is due to a facility expansions driven by
+RACF long-term needs that occurred in the recent past.
+This expansion has allowed a relaxation on the nominal end-of-life
+requirement on our computers.
+Although the current nodes are no longer modern, they are still
+serviceable. 
+As the RACF expansion is filled we expect pressure will build to take
+them out of service.
+But for now, the extra life helps us delay replacement costs.
+
+\begin{center}
+\begin{tabular}[h]{|l|r|r|r|r|}
+  \hline
+  Exp. & Purchases & Nodes (boxes) & CPU (cores) & Disk (TB) \\
+  \hline
+  Daya Bay & 3 & 12 & 296 & 100 \\
+  \hline
+  LBNE & 1 & 10 & 160 & 55 \\
+  \hline
+\end{tabular}
+
+The current BNL IF footprint in RACF.
+\end{center}
+
+\subsection{General Strategy}
+
+The BNL IF group intends to continue to leverage RACF.
+However we have identified that the current model of equating an
+experiment with an RACF Unix account group does not scale well in our
+case.
+In RACF, the Unix account groups are used to apply various usage
+policies such as defining batch queue priorities and which nodes a
+user in a group may access interactively.
+Unix users account may exist only in one group yet, has said above,
+the individual humans typically span multiple experiments.
+Thus, this requires an individual to maintain one RACF account for
+each experiment.
+This has proved cumbersome even for experimenters that work in both
+Daya Bay and LBNE.
+It is clear that if this fine-grained separation is scaled to all IF
+efforts and given their overlap in staffing, this organizational
+scheme would become unmanageable.
+On the other side of the coin, exposing such fine-grained groupings to
+RACF would needless complicate their management and support.
+In some cases, there are already duplicate support requests which are
+actually made for the same thing.
+
+The other issue has to do with matching the immediate, modest needs of
+some of the BNL IF experiments to the costs, minimal as they are, to
+buying in to RACF.
+If an experiment only needs a fraction of a node now, it is more cost
+efficient if they can share part of an existing computer and to hold
+off purchases until their needs reach the level of at least full node.
+This has knock-on benefits that waiting always leads to more computing
+power for the same cost.
+
+Faced with this picture, it has been decided to form an umbrella group
+for future RACF hardware purchases and to share them among all BNL IF
+efforts.
+This will require some additional self-management by the IF members
+but will reduce overall complexity and RACF will deal with a single
+entity instead of many fragmented ones.
+We will being this umbrella by directing all new purchase by BNL IF
+members to be placed in RACF under a new IF umbrella group.
+We will look into the feasibility to reconfigure existing Daya Bay and
+LBNE computers.
+The benefit of reconfiguring them needs to be balanced against the
+effort to do so and the fact that most of them are past their nominal
+end-of-life.
+
+\subsection{Caveats and Clarifications}
+
+\subsubsection{Interpretation of Tables}
+
+Following the letter of request, we give tables of hardware
+requirements.
+The ``Tot.'' column contains the total number of units that are
+estimated to be required per year.
+For CPU cores this we attempt to estimate the total number of CPU
+core-years per year.
+Within any given year the usage profile is expected to have peaks
+which we must either spread out on our own CPUs or rely on
+opportunistic use of the rest of RACF.
+As such, this strategy leads to a comfortable overestimate. 
+The ``\%New'' columns indicate what portion of that years hardware
+unit is expected to be newly purchased that year on the assumption of
+the current ``Tot.'' value and given a four year end-of-life for any
+hardware from prior years.
+We interpret the ``\%Lab" columns to indicate any computing hardware,
+purchased through BNL, but not intended specifically to be used by the
+BNL IF efforts.
+In all cases, we expect no such hardware.
+
+
+\subsubsection{Experiments Pending Approval}
+
+The computing hardware requirements in support each of the JUNO, NA62
+and Prospect experiments at BNL are given under the assumption that
+BNL IF group involvement in those experiments will be approved and go
+forward.
+It is understood that involvement in these efforts is not yet certain.
+
+\subsubsection{Hardware End of Life}
+
+The numbers given for RACF hardware assume the nominal four year
+end-of-life.
+As discussed above, in reality, some longer service life may be
+realized.
+
+\subsubsection{Personal Computing Hardware}
+
+Some portion of personal computing (workstations and laptops) is used
+directly in support of IF computing.
+Besides the mundane email and document authoring, personal machines
+are used for software development, code building, analysis and some
+level of official simulation and data processing.
+These machines are not subject to the end-of-life requirements of RACF
+and tend to be longer lived.
+It is hard to quantify this category and so we do not include it in
+the detailed tables below. Instead we estimate that we require the
+equivalent of one or two new machines per year to be purchased across
+the BNL IF group.
+Extrapolating into FY 16-20 technology, a nominal machine would have
+10 CPU cores, 5 TB disk, 1 GPU and no tape hardware.
+
+\pagebreak
+\section{Daya Bay}
+
+The Daya Bay reactor antineutrino ($\bar\nu_e$) experiment has been
+operating in southern China since December 2011 and expects to
+complete operations at the end of FY2017. There are approximately 220
+collaborators mainly from China and the US. The yearly US contribution
+to Daya Bay operations is approximately \$450k.
+Daya Bay makes precision measurements of $\bar\nu_e$ oscillations as
+well as the flux and spectrum of reactor antineutrinos. 
+Additional measurements include cosmogenic production of neutrons and
+isotopes and the cosmic ray muon flux. 
+BNL has contributed to the oscillation, flux and spectral measurements
+and plans to do so in the future. The current effort is focussed on
+reducing the uncertainty in the estimate of the absolute $\bar\nu_e$
+detection efficiency from $\sim\!2\%$ to $1\%$ or less. This
+uncertainty dominates the uncertainty in the reactor flux measurement. 
+
+The main computing resource in Daya Bay is PDSF at LBNL. BNL provides
+a node for automated building and testing of the Daya Bay software
+that uses approximately 1 CPU-core-hour each day and 200 GB of disk.
+We plan to use the existing RACF hardware for detailed simulation
+studies as well as some data analysis.  
+It is expected that existing nodes and opportunistic use can provide
+the needed hardware and so no new purchase is expected.
+
+
+\subsection{Activities and Milestones}
+
+\begin{description}
+\item[FY2016] Publication of precision reactor flux analysis result. 
+				Refinement of oscillation analysis methodology. 
+\item[FY2017] Completion of operations. Completion of oscillation analysis methodology. 
+\item[FY2018] Publication of final oscillation analysis results.
+\item[FY2019] Publication of final reactor flux and spectrum analysis results.
+\item[FY2020] Final Daya Bay publications.
+\end{description}
+
+\subsection{Hardware}
+
+\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
+  \hline
+   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
+   \hline
+  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
+  \hline
+  2016 & 200& 0& 0& -& -& -& 100& 0 & 0 & -& -& -\\
+  \hline
+  2017 & 150& 0& 0& -& -& -& 100& 0 & 0 & -& -& - \\
+  \hline
+  2018 & 100& 0& 0& -& -& -& 50& 0 & 0 & -& -& - \\
+  \hline
+  2019 & 50& 0& 0& -& -& -& 50& 0 & 0 & -& -& - \\
+  \hline
+ 2020 & 50& 0& 0& -& -& -& 50& 0& 0& -& -& - \\
+  \hline
+\end{tabular}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{LAr1-ND/SBN}
+
+% name, physics goals, collaborators and size, international, approximate cost, stages through the 5 years.
+
+% largely ripped from the CDR
+
+The Fermilab Short Baseline Neutrino program includes the construction
+of a Liquid Argon Near Detector, LAr1-ND, at 110 m from the Booster
+neutrino source in a new enclosure.
+It will serve as the near detector in a three LAr-TPC experiment
+capable of definitively addressing existing anomalies in neutrino
+physics and making precision measurements of high-$\Delta m^2$
+neutrino oscillations through both appearance and disappearance
+searches.
+Due to the high event rate of neutrino interactions at the near
+location, significant physics output can be achieved with a relatively
+short run of the LAr1-ND experiment.  
+
+The collaboration consists of about 100 collaborators from 20
+international institutions.
+It is expected to cost \$30M US-equivalent and begin operations in
+2018. 
+
+The computing requirements to support LAr1-ND are somewhat coupled to
+those of MicroBooNE due to their timescales, similarities in
+technology and the individuals working on the two efforts at BNL.
+It is expected that as MicroBooNE finishes taking data the hardware
+dedicated to it will transition to supporting LAr1-ND.
+In the table below we do not count this MicroBooNE hardware.
+
+\subsection{Activities and Milestones}
+
+\begin{description}
+\item[FY2018] Initial commissioning and data taking with beam begins.
+\item[FY2019-2020] Analysis and publications
+\end{description}
+
+\subsection{Hardware}
+
+\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
+  \hline
+   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
+   \hline
+  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
+  \hline
+  2016 &0 &0 &0 &   -& -& -& 0& 0& 0&- &- &- \\
+  \hline
+  2017 &0 &0 &0 &   -& -& -& 0& 0& 0&- &- &- \\
+  \hline
+  2018 &50 & 100 &0& -& -& -&  50 & 100 & 0 &- &- &-  \\
+  \hline
+  2019 &100 & 50& 0& -& -& -& 100 & 50 & 0 &- &- &-  \\
+  \hline
+  2020 &150 & 33& 0& -& -& -& 150 & 33 & 0 &- &- &-  \\
+  \hline
+\end{tabular}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{DUNE}
+
+The Long Baseline Neutrino Experiment (LBNE) has a variety of important goals that
+include:
+determination and detailed measurement of CP violation in the neutrino sector,
+neutrino mass hierarchy,
+search for proton decay and
+observation of neutrinos from supernovae.
+
+
+In 2014, the Collaboration included over 500 collaborators from 92
+institutions in 10 countries, and the project was led by FNAL.
+The total cost is a matter of ongoing study and optimization but is
+expected to be in the \$1B range including a neutrino beamline and
+target complex, near neutrino detector at FNAL, and Liquid Argon
+detectors at the Far Site at Homestake (South Dakota). Also included
+are prototype Liquid Argon detectors (and their elements such as the
+Photon Detection System) and other prototypes whose construction is
+necessary in order to optimize detector characteristics and in
+particular understand how to scale up from current detector volumes to
+the final Far Detector which will contain tens of kilotons of
+instrumented cryogenic medium.
+
+Following the outcome of P5 deliberations, LBNE is currently in a
+period of transition into a wider collaboration with more significant
+international participation, with FNAL serving as the base and the
+facility for conducting neutrino experiments.
+A new factor in this development is consideration of the two-phase
+argon technology for the Far Detector. While this will potentially
+allow a more optimal final design of the detector, it poses additional
+challenges in multiple areas of R\&D as well as software and
+computing.
+
+As a result, the next few years present even more unknowns than
+normally exist due to the nature of any large, long-running
+experiment. For the purposes of this report we note that LBNE software
+and computing was reviewed by the DOE in April 2014 and we shall here
+assume continuity of the development as it was planned in 2014.  
+E.g. base our assumption on the single-phase detector option
+(currently supported by active R\&D based at FNAL).
+We have now expanded this to include the CERN Full Scale Test,
+described more below.
+
+The overall computing needs for the full LBNE are driven by the amount
+of shielding from sources of cosmogenic background, as determined by
+its Far Detector depth and importantly by the energy threshold chosen
+for the zero suppression algorithms deployed to the front-end
+electronics.
+
+According to our existing plans, the bulk of storage and a significant
+portion of the processing capacity is expected to be supplied by
+FNAL. 
+We do not need to go into detail of FNAL facility here and will
+concentrate on BNL.
+IF research at BNL will be deployed and operated in close cooperation
+with the RHIC and ATLAS
+Computing Facility (RACF). 
+While more general evolution of  RACF  is
+out of scope for this report,
+our IF working groups start planning for the future by maintaining a
+footprint in RACF to serve more
+immediate needs of our researchers as we develop approaches to scale
+up to the eventual full
+experiment.
+
+
+One of LBNE's computing requirements (adopted by the Collaboration and
+presented to DOE) states that we must store the precious raw data in
+more than one location.
+Over the five years covered by this report, it is BNL's intention to
+satisfy this requirement by providing a data center capable of storing
+data collected from the \textbf{35t} prototype of the Liquid Argon TPC
+and the CERN Full Scale Test \textbf{(FST)} detector.
+This would be in addition to a copy held at FNAL.
+We expect these data to be populated and then served to LBNE
+researchers and facilities through modern, highly bandwidth, low
+latency methods based on XrootD and dCache.
+A secondary outcome of implementing this system will be to retain
+investment in BNL's RACF for the use of BNL LBNE collaborators and to
+provide continuity of expertise necessary for the eventual
+full-experiment data taking, which according to some plans may take
+place as early as 2021, with a large portion of the Far Detector
+commissioned and taking initial data before the arrival of the beam.
+
+\subsection{Activities and Milestones}
+
+\begin{description}
+\item[FY2016] \
+\begin{itemize}
+\item Analysis of the data taken in 2015 with the 35t Liquid Argon prototype at FNAL
+\item Characterization and improvement of reconstruction algorithms
+\item Simulation and reconstriction development for the Near Neutrino Detector
+\item Preparations for the FST at CERN (DAQ/online, detector characterization, reconstruction)
+\end{itemize}
+\item[FY2017] \
+\begin{itemize}
+\item  Commissioning and operation of the FST prototype at CERN
+\item Initial analysis of the FST data
+\item Advanced MC studies for rare and background-sensitive physics
+\end{itemize}
+
+\item[FY2018] \
+\begin{itemize}
+\item Tune-up of reconstruction algorithms using the FST data
+\item Far Detector Technology downselect
+\item Commencement of the Far Detector Stage 1 construction
+\item Initial Front-End and Online Systems development
+\end{itemize}
+
+\item[FY2019] \
+\begin{itemize}
+\item Continued analysis of the CERN FST data
+\item Development and deployement of infrastructure for the data distribution and analysis for the 2021 run
+\end{itemize}
+
+\item[FY2020] \
+\begin{itemize}
+\item Deployment and testing of DAQ/Online systems
+\item Data challenges for MC and reconstruction, for 2021 readiness
+\end{itemize}
+\end{description}
+
+\noindent Numbers presented in the following section are based on our
+estimates of hardware investments necessary for BNL to meaningfully
+support these activities and milestones. 
+Our approach is to create a modest but functional pool of CPU power,
+and skew the planned hardware capability to storage, in order to meet
+relevant items of the software and computing requirements as mentioned
+above.  We assume no end-of-life for tapes.
+
+\subsection{Hardware}
+
+\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
+  \hline
+   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
+   \hline
+  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
+  \hline
+  2016  &  320 &  100   & 0 & - & - & - & 500 & 100 & 0 & 1000 & 100 &  0 \\
+  \hline
+  2017 &  320 &   0     & 0 & - & - & - & 1000  & 50 & 0 & 2000 & 50    &  0 \\
+  \hline
+  2018 &  320 &   0     & 0 & - & - & - & 1000  & 0   & 0 & 2000 & 0      &  0 \\
+  \hline
+  2019  &  320 &  0    & 0 & - & - & - & 1000  &  0 & 0 & 2000 & 0     &  0 \\
+  \hline
+  2020 &  320 &  100     & 0 & - & - & - & 2000  & 75   & 0 & 2000 & 0    &  0 \\
+  \hline
+\end{tabular}
+
+\pagebreak
+\section{MicroBooNE}
+
+The goals of the MicroBooNE experiment include investigating the nature of 
+MiniBooNE low energy excess, measuring neutrino-argon interacting cross section,
+and R\&D for liquid argon time projection chamber (LArTPC) detector technology 
+and reconstruction techniques. It includes over 160 collaborators from 
+25 institutions and is led by FNAL. The total cost of the experiment is about 
+\$20M. The main detector is a ~80 ton fiducial volume LArTPC located in the 
+FNAL Booster neutrino beam line. 
+
+MicroBooNE just finished its CD4, and will start the data taking in March 2015. 
+The bulk computing needs of MicroBooNE will be supplied by FNAL and 
+thus we do not go into detail here. The BNL computing is expected to supply
+the needs of BNL physicist in analyzing MicroBooNE data. The BNL MicroBooNE
+physics analysis team contains three staff scientists and five post-docs. 
+
+As noted above, it is expected that MicroBooNE hardware usage will
+transition to supporting LAr1-ND.
+Only expected purchases initially meant for MicroBooNE are counted in
+this section.
+
+
+\subsection{Activities and Milestones}
+
+\begin{description}
+\item[FY2016] Data taking, improve the LArTPC simulation and reconstruction software, data analysis towards publications.
+\item[FY2017] Finish data taking and begin work on the cross section publications.
+\item[FY2018-2019] Analysis and publications.
+%\item[FY2018] 
+%\item[FY2019] 
+%\item[FY2020]
+\end{description}
+
+\subsection{Hardware}
+
+\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
+  \hline
+   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
+   \hline
+  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
+  \hline
+  2016 &100 &100 &  0  &- & - & - &50 &100 & 0 &- & - & - \\
+  \hline
+  2017 &200 &50  &  0  &- & - & - &100 &50 & 0 &- & - & - \\
+  \hline
+  2018 &200 &0   &  0  &- & - & - &100 & 0 & 0 &- & - & - \\
+  \hline
+  2019 &100 &0   &  0  &- & - & - & 50 & 0 & 0 &- & - & - \\
+  \hline
+  2020 &0   &0   &  0  &- & - & - &  0 & 0 & 0 &- & - & - \\
+  \hline
+\end{tabular}
+
+\pagebreak
+\section{Muon g-2}
+
+The goal of the Muon $g-2$ Experiment E989 at Fermilab is to measure
+the muon anomalous magnetic moment, $a_\mu \equiv (g-2)/2$, to
+unprecedented precision of 0.14~parts per million (ppm).
+At the moment, the Muon $g-2$ collaboration consists from more than
+150~members from 30 institutions from 8 countries. 
+The baseline cost of the E989 Project is about \$48M.
+The E989 Project received CD-1 approval from DOE in December 2013; CD2
+review is expected in May 2015. 
+In the relevant 5 year period the Project will be progressing though
+the CD-3, CD-4, commissioning, physics data taking and data analysis.  
+
+The measurement involves ambitious statistical and systematic
+uncertainty goals. 
+To meet the statistical goal of E989, about $2\times 10^{11}$ events
+of muon decay are needed in the final fitted histogram. 
+This translates into about two petabytes of data storage requirement
+to save the raw experimental data for the offline analysis. 
+To meet the systematics goal of E989, both dedicated measurements and
+detailed Monte Carlo simulations are needed. 
+The simulations require both CPU power and data storage capacity.  
+The complete end-to-end simulations are needed to address both
+beam-related and detector-related systematic uncertainties. 
+The simulations include the simulations of
+%
+{\em i)} pion production in the production target; 
+{\em ii)} pion capture by the beamline optics; 
+{\em iii)} pion transport; 
+{\em iv)} muon capture in the decay line;
+{\em v)} muon transport through the beamline to the $g-2$ storage ring; 
+{\em vi)} muon injection into the $g-2$ storage ring;
+{\em vii)} muon storage in the $g-2$ storage ring; 
+{\em viii)} muon decay in the storage ring and tracking of the decay positrons; 
+{\em ix)} detector response; 
+{\em x)} backgrounds. 
+
+The simulation software in E989 is based on the tools recognized by
+the HEP community such as {\tt Geant4}, {\tt ROOT}, {\tt MARS}, {\tt
+  G4beamline}, {\tt MAD}, {\tt BMAD}. 
+The {\tt Art} framework was chosen by the collaboration as a universal
+data analysis and simulation framework.
+It allows to integrate different software tools into one system, it
+standardizes the event exchange between data producers and data
+consumers, it hides the complexity of low-level data input/output
+protocols, it provides a convenient way to vary the geometry of the
+apparatus as well as the running conditions, it provides a flexible
+mechanism of setting up sophisticated event selection conditions and
+it helps to reduce coding errors by encouraging the users to follow
+the principles recommended by the modern high-level programming
+languages.
+
+\subsection{Activities and Milestones}
+
+The E989 Project almost perfectly fits into the five-year plan of this
+Request. 
+The physics data taking is expected to start in FY2018. 
+Before FY2018 the collaboration will be conducting intensive Monte
+Carlo studies to support the Project development and construction. 
+The simulation software in E989 is in a mature state due to
+collaborative effort in software development. 
+In FY2015 the collaboration is planning to simulate the first
+high-statistics data sample of muon decays in the storage ring using
+an ideal muon beam ($2\times 10^7$ muon sample). 
+The plan is to use Femilab computing resources for this simulation
+task. 
+We expect that the design of the $g-2$ decay and transport beamlines
+will be finalized in FY2015 which will allow us to update the software
+model of the beamline end run the complete end-to-end simulations. 
+Thus, regarding the requested five-year term the plans are the
+following. 
+\begin{description}
+\item[FY2016] 
+Generate a $10^9$ muon sample in the storage ring using Femilab and BNL computing resources ($50\times50$ split between BNL and Fermilab).  
+  This task will require approximately 14M CPU hours total after optimization of the software code. 
+  The design of the $g-2$ beamline is finalized.  
+  Software model of the decay and transport line is updated. 
+  Generate a preliminary sample of muons at injection into the storage ring ($\approx 10^6$ muons)  starting upstream by simulating proton-target interactions in the production target and tracking all charged particles through the beamline. 
+\item[FY2017] 
+  Generate a high-statistics data sample using complete end-to-end simulations. 
+  Analysis of systematic effects using the generated data sample. 
+  Beam tuneup. 
+\item[FY2018] 
+  Physics data production starts at full beam intensity. 
+  BNL resources will be used to store a second copy of experimental data for redundancy and offline data analysis. 
+  We expect to collect a comparable to or twice as high statistics of muon decays of the previous Muon $g-2$ experiment E821 at Brookhaven. 
+  Analysis of experimental data starts. 
+\item[FY2019] 
+  Continue physics data production. 
+  Collect $5\div 10\times$ the statistics of the BNL experiment. 
+  Analysis of experimental data.  
+  First physics result. 
+\item[FY2020]
+  The full statistics collected. Data analysis.  
+\end{description}
+
+Following the strategy of the previous Muon $g-2$ experiment at Brookhaven, the collaboration is planning to establish two or more parallel efforts of data analysis and evaluation of systematic uncertainties by independent groups of people and independent analysis algorithms. 
+Computing resources at BNL will be used for the independent analysis of the experimental data and to study the systematic effects. 
+The data storage requirements in the table below include the storage for both simulated and physics data. 
+
+\subsection{Hardware}
+
+\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
+  \hline
+   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
+   \hline
+  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
+  \hline
+  2016 & 150 & 100 &  0& - &- &- & 10 & 100 & 0& 100 &  100 & 0\\
+  \hline
+  2017 & 300 &  50  & 0& - &- &- &  50 &  80    &0 & 500 &   90 & 0\\
+  \hline
+  2018 & 300 &   0   & 0& - &- &- &  50 & 0      &0 & 1000 &   80 & 0\\
+  \hline
+  2019 & 300 &   0   & 0& - &- &- & 100 & 50     &0 & 3000 &   60 & 0\\
+  \hline
+  2020 & 300 &  50  &  0&-  &- &- & 100 &  10    &0 & 6000 &   50 & 0\\
+  \hline
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{Prospect}
+
+The PROSPECT reactor antineutrino experiment's goals are to understand
+reactor antineutrino emissions and resolve the "reactor anomaly". The
+PROSPECT collaboration is largely based in the US with approximately
+50 collaborators and is expected to grow to $\sim\!65$. 
+PROSPECT is planned as a two phase project. The cost of Phase I is
+estimated at \$3-4M.  
+The initial phase comprises a $\sim\!2$-ton target/detector
+approximately 7 meters("near") from the reactor. 
+The second phase would add a 10-ton target/detector fifteen
+meters("far") from the reactor.
+Both phases would measure $\bar\nu_e$ inverse beta decay interactions
+with segmented, ${}^6{\rm Li}$-loaded liquid scintillator (LiLS)
+detectors. Small prototype LiLS detectors have been and will be
+deployed at the compact High Flux Isotope Reactor (HFIR) at ORNL. 
+The segmentation permits a measurement of the distance between
+$\bar\nu_e$ production and detection, and the LiLS enables good energy
+resolution and background suppression via pulse-shape discrimination.
+
+The main computing resources for PROSPECT are expected to be LLNL and
+Yale University. 
+The BNL effort is on design and simulation of the passive shielding,
+simulation of calibration using short-lived radioactive isotopes
+dissolved in the liquid scintillator and analysis of detector
+data. The initial computing effort would leverage the Daya Bay RACF
+hardware. 
+\subsection{Activities and Milestones}
+
+\begin{description}
+\item[FY2015] Deployment of $\sim\!16$-module PROSPECT prototype at HFIR. 
+				Analysis of prototype data. 
+                Design of the Phase I 2-ton PROSPECT detector. 
+\item[FY2016] Construction and deployment of the Phase I 2-ton near detector at HFIR.
+				Analysis of Phase I detector data. R\&D towards a Phase II far detector.
+\item[FY2017] Near detector operation. Planning for far detector (if desired based on near
+			detector results).
+\item[FY2018] Near detector operation. 
+\item[FY2019] Construction and deployment of far detector, if warranted.
+\item[FY2020] Near and far detector operation, if warranted.
+\end{description}
+
+\subsection{Hardware}
+
+\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
+  \hline
+   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
+   \hline
+  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
+  \hline
+  2016 & 50 &100 &0 &- &- &- & 10& 100&0 &- &- &- \\
+  \hline
+  2017 & 100& 50& 0&- &- &- & 20& 50&0 &- &- &-  \\
+  \hline
+  2018 & 100& 0& 0&- &- &- & 20& 0&0 &- &- &-  \\
+  \hline
+  2019 & 100& 0& 0&- &- &- & 20& 0&0 &- &- &-  \\
+  \hline
+  2020 & 100& 50& 0&- &- &- & 20& 50&0 &- &- &-  \\
+  \hline
+\end{tabular}
+
+\pagebreak
+\section{Water-based Liquid Scintillator R\&D}
+New techniques developed by the BNL electronic detector and neutrino
+\& nuclear chemistry group for Water-based Liquid Scintillator (WbLS)
+formulation allow the fraction of scintillating liquid in water to be
+varied. 
+The personnel of the R\&D effort are two BNL scientists, a staff
+member, a full-time postdoc and occasional contributions from others
+in the electronic detector and neutrino \& nuclear chemistry groups.   
+The goals of the R\&D effort are to measure the properties of WbLS
+with sufficient detail to be able to predict the light yield for
+ionizing particles in large-scale detectors. 
+The important properties of WbLS are the quantum yield and light
+emission spectrum, absorption as a function of wavelength, the decay
+time distribution, stability over time and ability to withstand
+irradiation.
+The R\&D is supported by a BNL LDRD(FY2012-14), DOE Generic R\&D, and
+a BNL Technology Maturation Grant (FY2014-15). A SBIR entitled "An
+Active Water Phantom for Three-dimensional Proton Therapy Quality
+Assurance" (P.I. Steven Vigdor Senior Vice President of Phenix Medical
+and former BNL ALD) was submitted to the NIH in December 2014. If
+approved, funding is expected to begin in the last quarter of FY2015
+and extend through FY2018. Data were acquired for small prototype
+detectors in 2012-2014. Additional R\&D with small-scale prototypes is
+expected. 
+A modest-sized ($\sim\!1000$ liter) detector is being commissioned. 
+Besides use for proton therapy, WbLS-based detectors are being
+investigated for large scale neutrino and nucleon decay detectors, and
+for a T2K near detector upgrade.
+
+The main computing effort is the analysis of prototype data and the development of a detailed
+simulation model. Computation has taken place on collaborator laptops and RACF.  
+A modest, but sustained, hardware presence in RACF is foreseen.
+
+
+\subsection{Activities and Milestones}
+
+\begin{description}
+\item[FY2015] Commissioning of $\sim\!1000$ liter detector. 
+				Irradiation of different WbLS formulations. 
+                Further characterization of WbLS.
+                Data analysis.
+\item[FY2016-18] Operation of $\sim\!1000$ liter detector.
+				Further characterization of WbLS.
+                Data analysis.
+                Participation in SBIR if accepted. 
+                \item [FY2019-20] Characterization of WbLS. 
+\end{description}
+
+\subsection{Hardware}
+
+\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
+  \hline
+   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
+   \hline
+  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
+  \hline
+  2016 & 10 & 100& 0&- &- &- & 2& 100 & 0&- &- &- \\
+  \hline
+  2017 & 10&    0& 0&- &- &- & 2& 0& 0&- &- &-  \\
+  \hline
+  2018 & 10&    0& 0&- &- &- & 2& 0& 0&- &- &-  \\
+  \hline
+  2019 & 10&    0& 0&- &- &- & 2& 0& 0&- &- &-  \\
+  \hline
+  2020 & 10&  100& 0&- &- &- & 2& 100& 0&- &- &-  \\
+  \hline
+\end{tabular}
+
+%\input{letter}
+
+\pagebreak
+\section{Summary Tables}
+
+Summary of newly purchased hardware for each experiment and by type,
+rolled up over the five years.
+Units are as above.
+
+\begin{center}
+  
+\begin{tabular}[h]{|c||r|r|r|}
+\hline
+    & New CPU    & New Disk & New Tape \\
+    & (core/5yr) & (TB/5yr) & (TB/5yr) \\
+\hline
+Daya Bay & 0 & 0 & 0 \\
+\hline
+JUNO & 600 & 70 & 200 \\
+\hline
+LAr1-ND/SBN & 150 & 150 & 0 \\
+\hline
+LBNE & 640 & 2500 & 2000 \\
+\hline
+$\mu$BooNE & 200 & 100 & 0 \\
+\hline
+$\mu$ g-2 & 450 & 110 & 6000 \\
+\hline
+NA62 & 75 & 200 & 0 \\
+\hline
+Prospect & 150 & 30 & 0 \\
+\hline
+WbLS & 20 & 4 & 0 \\
+\hline
+\end{tabular}
+
+\end{center}
+
+
+
+
+\end{document}

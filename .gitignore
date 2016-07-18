@@ -7,6 +7,9 @@
 *.out
 *.toc
 
+# likely PDF-formatted results of compilation
+bnl-if*.pdf
+
 ## Intermediate documents:
 *.dvi
 *-converted-to.*

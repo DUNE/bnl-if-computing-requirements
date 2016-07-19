@@ -1,6 +1,7 @@
 \documentclass[pdftex,12pt,letter]{article}
 \usepackage[margin=0.75in]{geometry}
 \usepackage{verbatim}
+\usepackage{graphicx}
 \usepackage[pdftex,pdfpagelabels,bookmarks,hyperindex,hyperfigures]{hyperref}
 
 \newcommand{\fixme}[1]{\textbf{#1}}
@@ -161,8 +162,8 @@ for construction and test-beam operation of two detectors at CERN in late 2018. 
 since both will incorporate principal structural elements (such as sensor electrode planes) built according to the scale
 of the full DUNE detector. Earlier in 2016, a smaller 35t LArTPC prototype took cosmic ray data at FNAL.
 
-The protoDUNE program is a challenging endeavor which will involve a large detector, state-of-the-art readout technology
-and signal processing, modern DAQ and other online systems and will require sophisticated calibrations
+The protoDUNE program is a challenging endeavor which will involve a large cryogenic detector,
+state-of-the-art readout technology and signal processing, modern DAQ and other online systems and will require sophisticated calibrations
 and processing of a few PB of data. For this reason, in the next few years DUNE software and computing
 can be roughly described as two closely related
 categories -- DUNE and protoDUNE -- as described below:
@@ -186,10 +187,24 @@ simulation and reconstruction, and simulation and reconstruction with large-scal
 \end{itemize}
 \end{enumerate}
 
-\subsection{DUNE Computing at BNL}
+\subsection{Raw Data Handling in protoDUNE}
+BNL IF personnel is closely involved in the design of the raw data handling system for protoDUNE.
+A conceptual diagram of the system us presented in Fig.\,\ref{fig:raw_concept}. Similar to the
+LHC experiments, protoDUNE will leverage EOS as the central element for managing and distributing
+the raw data, including to tape storage at CERN and FNAL. Likewise, a specialized online buffer (similar
+in function to the ATLAS SFO) will be required to handle substantial data rate that protoDUNE will create
+according to the run plan. Plans exist to leverage the Fermi FTS system for implementation of the data
+transfer from the online buffer to EOS, and also from EOS to remote data centers (e.g. FNAL, BNL, etc).
+
+\begin{figure}[tbh]
+\centering\includegraphics[width=0.8\linewidth]{protoDUNE_raw_data_concept.png}
+\caption{\label{fig:raw_concept}Conceptual diagram of the flow of raw data in protoDUNE}
+\end{figure}
+
+\subsection{DUNE Offline Computing at BNL}
 According to the DUNE Computing Model and the TDR under development at the time of writing,
 DUNE will implement a fully distributed data management system. Similar to other experiments,
-data (and raw data in parcicular) will be replicated to several locations. In addition to managed
+data (including the raw data) will be replicated to several locations. In addition to managed
 replicas existing at major computing sites, we expect that data to be  served to DUNE
 researchers and facilities through modern, highly bandwidth, low
 latency methods based on combination of XRootD and dCache. Small scale initial testing

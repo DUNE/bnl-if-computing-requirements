@@ -31,9 +31,9 @@ milestones and resource estimates.
 The Intensity Frontier (IF) activities at BNL include the following
 experiments and research and development efforts:
 %
+DUNE,
 Daya Bay,
 LAr1-ND/SBN,
-DUNE,
 MicroBooNE,
 Muon g-2,
 Prospect and
@@ -59,9 +59,9 @@ The main computing resource  we rely on to do this is the RHIC/ATLAS Computing
 Facility (RACF). Because the RACF is extremely efficient and embodies substantial computing
 expertise they have been able to provide Daya
 Bay and DUNE a modest footprint at a low direct cost to the experiments.
-The footprint of the Daya Bay and DUNE computing at RACF is illustrated in Table \ref{tab:bnlif_at_racf_2016}.
-Historically, to the extent that the IF computing does not add to the overall complexity of RACF it
-was accommodated with minor incremental effort.
+The footprint of the Daya Bay and DUNE computing at RACF (as it existed in 2015-2016)
+is illustrated in Table \ref{tab:bnlif_at_racf_2016}. Historically, to the extent that the IF computing does not add
+to the overall complexity of RACF it was accommodated with minor incremental effort.
 
 
 \begin{table}[tbh]
@@ -75,7 +75,7 @@ was accommodated with minor incremental effort.
   DUNE & 1 & 10 & 160 & 55 \\
   \hline
 \end{tabular}
-\caption{The current (2016) BNL Intensity Frontier Research footprint in RACF.}
+\caption{The BNL Intensity Frontier Research footprint in RACF in 2015--2016.}
 \label{tab:bnlif_at_racf_2016}
 
 \end{table}
@@ -121,31 +121,11 @@ A few of the projects/experiments are scheduled to end before FY2022, which is r
 
 \subsubsection{Interpretation of Tables}
 
-In the following sections, tables of hardware
-requirements are presented.
-The ``Tot.'' column contains the total number of units that are
-estimated to be required per year.
-For CPU cores this we attempt to estimate the total number of CPU
-core-years per year.
-Within any given year the usage profile is expected to have peaks
-which we must either spread out on our own CPUs or rely on
-opportunistic use of the rest of RACF.
-As such, this strategy leads to a comfortable overestimate. 
-The ``\%New'' columns indicate what portion of that years hardware
-unit is expected to be newly purchased that year on the assumption of
-the current ``Tot.'' value and given a four year end-of-life for any
-hardware from prior years.
-We use the ``\%Lab" columns to indicate any computing hardware,
-purchased through BNL, but not intended specifically to be used by the
-BNL IF efforts. In all cases, we expect no such hardware.
-
-\subsubsection{Hardware End of Life}
-
-The numbers given for RACF hardware assume the nominal four year
-end-of-life.
-As discussed above, in reality, some longer service life may be
-realized.
-
+In the following sections, tables of hardware requirements are presented for each experiment/R\&D effort.
+For CPU cores we attempt to estimate the total number of CPU core-years per year.
+In these tables, no consideration is given for end-of-life of the equipment, i.e. it is assumed that
+the resource levels remain the stable in each time period. As discussed, we expect some equipment to remain
+in service past the nominal EOL.
 
 \subsubsection{Network Bandwidth}
 For most of the BNL IF effort, the network requirements can be expected to be quite modest with one
@@ -271,8 +251,10 @@ been made yet at the time of writing.
 \subsection{Network Implications}
 At the time of writing, no decision has been made on whether the protoDUNE data will be replicated to BNL directly from CERN
 EOS  or it iss committed to mass storage at FNAL first and then replicated to BNL. Assuming that the goal is to create a copy of
-the raw data sample at about same rate as it is produced by the protoDUNE DAQ, the minimal required network bandwidth (incoming into
-BNL) is 300MB/s. This may be revised upward but likely not more than a factor of 2 at the most.
+the raw data sample at about same rate as it is produced by the protoDUNE DAQ -- i.e. to implement a true near-time replication strategy --
+the minimal required network bandwidth (incoming into
+BNL) is 300MB/s. This may be revised upward but likely not more than a factor of 2 at the most. Additional bandwidth will be required
+to implement storage federation via XRootD, but it is likely to be on a lesser scale.
 
 \subsection{Activities and Milestones}
 \begin{description}
@@ -330,24 +312,24 @@ relevant items of the software and computing requirements as mentioned
 above.  We assume no end-of-life for tapes.
 
 \subsection{Hardware}
-
-\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
-  \hline
-   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
-   \hline
-  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
-  \hline
-  2016  &  320 &  100   & 0 & - & - & - & 500 & 100 & 0 & 1000 & 100 &  0 \\
-  \hline
-  2017 &  320 &   0     & 0 & - & - & - & 500  & 0 & 0 & 1000 & 0    &  0 \\
-  \hline
-  2018 &  2,300 &   90     & 0 & - & - & - & 1000  & 50   & 0 & 2000 & 50      &  0 \\
-  \hline
-  2019  &  2,300 &  0    & 0 & - & - & - & 1000  &  0 & 0 & 2000 & 0     &  0 \\
-  \hline
-  2020 &  2,300 &  0     & 0 & - & - & - & 2000  & 75   & 0 & 2000 & 0    &  0 \\
-  \hline
+\begin{table}[tbh]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+FY & Nominal CPU (cores) & Disk (TB) & Tape (TB) \\
+\hline
+2016  &  320 &  500 & 1000   \\
+\hline
+2017 &  320 & 500  & 1000  \\
+\hline
+2018 &  2,300 & 1000  & 2000 \\
+\hline
+2019  &  2,300 & 1000 & 2000  \\
+\hline
+2020 &  2,300  & 2000 & 2000 \\
+\hline
 \end{tabular}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
@@ -390,22 +372,23 @@ the needed hardware and so no new purchase is expected.
 
 \subsection{Hardware}
 
-\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
-  \hline
-   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
-   \hline
-  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
-  \hline
-  2017 & 150& 0& 0& -& -& -& 100& 0 & 0 & -& -& - \\
-  \hline
-  2018 & 100& 0& 0& -& -& -& 50& 0 & 0 & -& -& - \\
-  \hline
-  2019 & 50& 0& 0& -& -& -& 50& 0 & 0 & -& -& - \\
-  \hline
- 2020 & 50& 0& 0& -& -& -& 50& 0& 0& -& -& - \\
-  \hline
-\end{tabular}
 
+\begin{table}[tbh]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+FY & Nominal CPU (cores) & Disk (TB) & Tape (TB) \\
+\hline
+2017 &  150 & 100  & ---  \\
+\hline
+2018 &  100 & 50  & --- \\
+\hline
+2019  &  50 & 50 & ---  \\
+\hline
+2020 &  50  & 50 & --- \\
+\hline
+\end{tabular}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
@@ -448,27 +431,26 @@ In the table below we do not count this MicroBooNE hardware.
 
 \subsection{Hardware}
 
-\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
-  \hline
-   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
-   \hline
-  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
-  \hline
-  2017 &0 &0 &0 &   -& -& -& 0& 0& 0&- &- &- \\
-  \hline
-  2018 &50 & 100 &0& -& -& -&  50 & 100 & 0 &- &- &-  \\
-  \hline
-  2019 &100 & 50& 0& -& -& -& 100 & 50 & 0 &- &- &-  \\
-  \hline
-  2020 &150 & 33& 0& -& -& -& 150 & 33 & 0 &- &- &-  \\
-  \hline
-  2021 &150 & 0& 0& -& -& -& 150 & 0 & 0 &- &- &-  \\
-  \hline
-  2022 &150 & 0& 0& -& -& -& 150 & 0 & 0 &- &- &-  \\
-  \hline
+\begin{table}[tbh]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+FY & Nominal CPU (cores) & Disk (TB) & Tape (TB) \\
+\hline
+2017 &  0 & 0  & ---  \\
+\hline
+2018 &  50 & 50  & --- \\
+\hline
+2019  & 100 & 100 & ---  \\
+\hline
+2020 &  150  & 150 & --- \\
+\hline
+2021 &  150  & 150 & --- \\
+\hline
+2022 &  150  & 150 & --- \\
+\hline
 \end{tabular}
-
-
+\end{table}
 
 \pagebreak
 \section{MicroBooNE}
@@ -505,24 +487,25 @@ this section.
 \end{description}
 
 \subsection{Hardware}
-
-\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
-  \hline
-   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
-   \hline
-  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
-  \hline
-  2016 &100 &100 &  0  &- & - & - &50 &100 & 0 &- & - & - \\
-  \hline
-  2017 &200 &50  &  0  &- & - & - &100 &50 & 0 &- & - & - \\
-  \hline
-  2018 &200 &0   &  0  &- & - & - &100 & 0 & 0 &- & - & - \\
-  \hline
-  2019 &100 &0   &  0  &- & - & - & 50 & 0 & 0 &- & - & - \\
-  \hline
-  2020 &0   &0   &  0  &- & - & - &  0 & 0 & 0 &- & - & - \\
-  \hline
+\begin{table}[tbh]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+FY & Nominal CPU (cores) & Disk (TB) & Tape (TB) \\
+\hline
+2016 &  100  & 50 & --- \\
+\hline
+2017 &  200 & 100  & ---  \\
+\hline
+2018 &  200 & 100  & --- \\
+\hline
+2019  & 100 & 50 & ---  \\
+\hline
+2020 &  0  & 0 & --- \\
+\hline
 \end{tabular}
+\end{table}
+
 
 \pagebreak
 \section{Muon g-2}
@@ -587,24 +570,24 @@ the independent analysis of the experimental data and to study the systematic ef
 The data storage requirements in the table below include the storage for both simulated and physics data. 
 
 \subsection{Hardware}
-
-\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
-  \hline
-   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
-   \hline
-  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
-  \hline
-  2016 & 150 & 100 &  0& - &- &- & 10 & 100 & 0& 100 &  100 & 0\\
-  \hline
-  2017 & 300 &  50  & 0& - &- &- &  50 &  80    &0 & 500 &   90 & 0\\
-  \hline
-  2018 & 300 &   0   & 0& - &- &- &  50 & 0      &0 & 1000 &   80 & 0\\
-  \hline
-  2019 & 300 &   0   & 0& - &- &- & 100 & 50     &0 & 3000 &   60 & 0\\
-  \hline
-  2020 & 300 &  50  &  0&-  &- &- & 100 &  10    &0 & 6000 &   50 & 0\\
-  \hline
+\begin{table}[tbh]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+FY & Nominal CPU (cores) & Disk (TB) & Tape (TB) \\
+\hline
+2016 &  150  & 10 & 100 \\
+\hline
+2017 &  300 & 50  & 500  \\
+\hline
+2018 &  300 & 50  & 1000 \\
+\hline
+2019  & 300 & 100 & 3000  \\
+\hline
+2020 &  300  & 100 & 6000 \\
+\hline
 \end{tabular}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
@@ -637,24 +620,24 @@ hardware.
 \end{description}
 
 \subsection{Hardware}
-
-\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
-  \hline
-   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
-   \hline
-  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
-  \hline
-  2016 & 50 &100 &0 &- &- &- & 10& 100&0 &- &- &- \\
-  \hline
-  2017 & 100& 50& 0&- &- &- & 20& 50&0 &- &- &-  \\
-  \hline
-  2018 & 100& 0& 0&- &- &- & 20& 0&0 &- &- &-  \\
-  \hline
-  2019 & 100& 0& 0&- &- &- & 20& 0&0 &- &- &-  \\
-  \hline
-  2020 & 100& 50& 0&- &- &- & 20& 50&0 &- &- &-  \\
-  \hline
+\begin{table}[tbh]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+FY & Nominal CPU (cores) & Disk (TB) & Tape (TB) \\
+\hline
+2016 &  50  & 10 & --- \\
+\hline
+2017 &  100 & 20  & ---  \\
+\hline
+2018 &  100 & 20  & --- \\
+\hline
+2019  & 100 & 20 & ---  \\
+\hline
+2020 &  100  & 20 & --- \\
+\hline
 \end{tabular}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
@@ -686,24 +669,24 @@ presence in RACF is foreseen going forward.
 \end{description}
 
 \subsection{Hardware}
-
-\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
-  \hline
-   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
-   \hline
-  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
-  \hline
-  2016 & 10 & 100& 0&- &- &- & 2& 100 & 0&- &- &- \\
-  \hline
-  2017 & 10&    0& 0&- &- &- & 2& 0& 0&- &- &-  \\
-  \hline
-  2018 & 10&    0& 0&- &- &- & 2& 0& 0&- &- &-  \\
-  \hline
-  2019 & 10&    0& 0&- &- &- & 2& 0& 0&- &- &-  \\
-  \hline
-  2020 & 10&  100& 0&- &- &- & 2& 100& 0&- &- &-  \\
-  \hline
+\begin{table}[tbh]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+FY & Nominal CPU (cores) & Disk (TB) & Tape (TB) \\
+\hline
+2016 &  10  & 2 & --- \\
+\hline
+2017 &  10 & 2  & ---  \\
+\hline
+2018 &  10 & 2  & --- \\
+\hline
+2019  & 10 & 2 & ---  \\
+\hline
+2020 &  10  & 2 & --- \\
+\hline
 \end{tabular}
+\end{table}
 
 
 

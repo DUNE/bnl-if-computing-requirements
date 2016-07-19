@@ -146,9 +146,16 @@ end-of-life.
 As discussed above, in reality, some longer service life may be
 realized.
 
+
+\subsubsection{Network Bandwidth}
+For most of the BNL IF effort, the network requirements can be expected to be quite modest with one
+significant exception: DUNE protoDUNE (see Section\,\ref{sec:dune}).
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
 \section{DUNE}
+\label{sec:dune}
 \subsection{The Far Detector and its prototypes}
 The Deep Underground Neutrino Experiment (DUNE) has a variety of important goals that
 include:
@@ -158,7 +165,11 @@ It will combine a powerful wide-bandwidth neutrino beam, a fine-grained Near Det
 the Far Detector based on a uniquely large Liquid Argon TPC (40kt fiducial mass). For the latter,
 there are two technologies being actively studied in DUNE: single-phase and dual-phase Liquid Argon TPCs.
 In order to validate both designs, an ambitious prototype program (``protoDUNE'') has been initiated which calls
-for construction and test-beam operation of two detectors at CERN in late 2018. The  prototypes are called ``full-scale''
+for construction and test-beam operation of two detectors at CERN in late 2018. Before the LHC Long Shutdown.
+There is a high probability that a second run will take place during the next LHC run, so protoDUNE is indeed a long
+term and large scale project.
+
+The  prototypes are called ``full-scale''
 since both will incorporate principal structural elements (such as sensor electrode planes) built according to the scale
 of the full DUNE detector. Earlier in 2016, a smaller 35t LArTPC prototype took cosmic ray data at FNAL.
 
@@ -196,6 +207,13 @@ in function to the ATLAS SFO) will be required to handle substantial data rate t
 according to the run plan. Plans exist to leverage the Fermi FTS system for implementation of the data
 transfer from the online buffer to EOS, and also from EOS to remote data centers (e.g. FNAL, BNL, etc).
 
+BNL IF is currently working on the design of the online buffer. A few technologies are being considered
+according to the required performance and ease of integration. The XRootD storage clustering is currently
+a very likely technology selection. Initial testing is under way, and integration testing for the online buffer
+and Fermi FTS are being planned. Doing this at BNL will require a modest amount
+of hardware and basic support.
+
+
 \begin{figure}[tbh]
 \centering\includegraphics[width=0.8\linewidth]{protoDUNE_raw_data_concept.png}
 \caption{\label{fig:raw_concept}Conceptual diagram of the flow of raw data in protoDUNE}
@@ -206,7 +224,7 @@ According to the DUNE Computing Model and the TDR under development at the time 
 DUNE will implement a fully distributed data management system. Similar to other experiments,
 data (including the raw data) will be replicated to several locations. In addition to managed
 replicas existing at major computing sites, we expect that data to be  served to DUNE
-researchers and facilities through modern, highly bandwidth, low
+researchers and facilities through modern, high-bandwidth, low
 latency methods based on combination of XRootD and dCache. Small scale initial testing
 of such system took place in 2015, whereby the data residing in dCache at FNAL were read
 at BNL via XRootD.
@@ -218,21 +236,50 @@ full-experiment data taking, which according to some plans may take
 place around 2024, with a large portion of the Far Detector
 commissioned and taking initial data before the arrival of the beam.
 
-In the area of physics tools, BNL plays an important role in the development of reconstruction software for DUNE, and
+In the area of physics tools, BNL plays an important role in the development of software for the detector R\&D (e.g. complex
+calculations of electrostatic field in 3D with realistic detector geometry), reconstruction software for DUNE, and
 in particular a novel tomography-based approach for LArTPC reconstruction, called ``Wirecell''.
 
 
 \subsection{protoDUNE Computing Challenges}
 While there are still a few unknowns in the run plan and data characteristics of protoDUNE, certain
-reliable ``ballpark'' estimates have been created. Nominal number of events to be recorded by the single-phase
-protoDUNE detector is fixed at 25\,M, and the total amount of raw data is of the order of 3\,PB.
+reliable ``ballpark'' estimates have been created. Currently the nominal number of events to be recorded by the single-phase
+protoDUNE detector is fixed at 25\,M, and the total amount of raw data is of the order of 3\,PB. It has been recongized
+that this scale (which is an order of magnitude larger than initial estimates) does not fit into ad-hoc single-site processing paradigm
+and requires leveraging a few computing sites in addition to FNAL. This creates unique opportunities for BNL as well as substantial challenges.
+
+For BNL RACF to make a meaningful contribution of protoDUNE production and to justify the cost and effort, we estimate that at
+the very least 20\% of data would need to be fully processed at BNL within a year of the end of run. Based on this, the storage requirement is 2\,PB of tape and
+a commensurate amount of disk space (about 1\,PB) to ensure efficient production.
+
+The required CPU budget is extremely difficult to calculate since all algorithms considered for reconstruction in DUNE (and there are
+a few) are under active development, undergo substantial evolution every few months and realistically are quite far from any
+sort of meaningful optimization. Still, based on recent experience, it is not unreasonable assume a 5 minutes per track ballpark estimate.
+%(the required time will obviously depend on the track length which can be anything from millimeters to meters, so an average is assumed here).
+Since most of the occupancy in the TPC will be due to cosmic ray events it is not crucial to conisder the beam event characteristics in
+great detail. Given the nominal 5\,ms readout window and estimated values for the cosmic muon flux it is expected that about 50
+tracks (and/or track fragments) wil need to be reconstructed in each event. This corresponds to $\sim$4 CPU$\times$hr per reconstructed
+event. In keeping with the assumption of 20\% of total statistics to be processed, this resuls in the total CPU budget of 20\,M CPU
+hours total for a production run, over the period of about a year. Reprocessing and other additional processing will take place
+at a later time but will of course require continued use of the computing resource.
+
+A somewhat unrelated but practically important issue is that of the choice of the Workload Management System for protoDUNE
+(and for DUNE beyond that).
+A decision is to be made by the DUNE S\&C leadership after consultation with the collaborators and facilities. No such decision has
+been made yet at the time of writing.
+
+\subsection{Network Implications}
+At the time of writing, no decision has been made on whether the protoDUNE data will be replicated to BNL directly from CERN
+EOS  or it iss committed to mass storage at FNAL first and then replicated to BNL. Assuming that the goal is to create a copy of
+the raw data sample at about same rate as it is produced by the protoDUNE DAQ, the minimal required network bandwidth (incoming into
+BNL) is 300MB/s. This may be revised upward but likely not more than a factor of 2 at the most.
 
 \subsection{Activities and Milestones}
 \begin{description}
 \item[FY2016] \
 \begin{itemize}
-\item Analysis of the data taken in 2015 with the 35t Liquid Argon prototype at FNAL
-\item Characterization and improvement of reconstruction algorithms, Wirecell proof of principle and initial characterization
+\item Analysis of the data taken with the 35t Liquid Argon prototype at FNAL
+\item Characterization and improvement of reconstruction algorithms, including Wirecell proof of principle and initial characterization
 \item Simulation and reconstriction development for the Near Neutrino Detector
 \item Initial preparations for the protoDUNE experiment at CERN (R\&D for DAQ and the online buffer, plans for detector characterization, reconstruction algorithms and framework)
 \item Workload Management System technology downselect
@@ -243,6 +290,7 @@ protoDUNE detector is fixed at 25\,M, and the total amount of raw data is of the
 \item protoDUNE: prototyping of the data management system, which will transport the data from the experiment to mass storage at CERN and FNAL, as well as other sites which potentially include BNL
 \item protoDUNE: integration of the beam instrumentation systems and data
 \item protoDUNE: data challenges involving a few distributed sites
+\item protoDUNE: prototype of XRootD data storage federation
 \item DUNE: advanced MC studies for rare and background-sensitive physics
 \item DUNE: improved Wircell reconstruction framework
 \end{itemize}
@@ -267,9 +315,9 @@ protoDUNE detector is fixed at 25\,M, and the total amount of raw data is of the
 \item[FY2020-FY2022] \
 \begin{itemize}
 \item Continued detailed analysis of the protDUNE data
-\item Development and deployement of infrastructure for the data distribution and analysis for the 2024 run
+\item Development and deployement of infrastructure for the data distribution and analysis for the 2024-- DUNE commissioning run
 \item Deployment and testing of DAQ/Online systems
-\item Data challenges for MC and reconstruction, for 2021 readiness
+\item Data challenges for MC and reconstruction
 \end{itemize}
 \end{description}
 
@@ -291,13 +339,13 @@ above.  We assume no end-of-life for tapes.
   \hline
   2016  &  320 &  100   & 0 & - & - & - & 500 & 100 & 0 & 1000 & 100 &  0 \\
   \hline
-  2017 &  320 &   0     & 0 & - & - & - & 1000  & 50 & 0 & 2000 & 50    &  0 \\
+  2017 &  320 &   0     & 0 & - & - & - & 500  & 0 & 0 & 1000 & 0    &  0 \\
   \hline
-  2018 &  320 &   0     & 0 & - & - & - & 1000  & 0   & 0 & 2000 & 0      &  0 \\
+  2018 &  2,300 &   90     & 0 & - & - & - & 1000  & 50   & 0 & 2000 & 50      &  0 \\
   \hline
-  2019  &  320 &  0    & 0 & - & - & - & 1000  &  0 & 0 & 2000 & 0     &  0 \\
+  2019  &  2,300 &  0    & 0 & - & - & - & 1000  &  0 & 0 & 2000 & 0     &  0 \\
   \hline
-  2020 &  320 &  100     & 0 & - & - & - & 2000  & 75   & 0 & 2000 & 0    &  0 \\
+  2020 &  2,300 &  0     & 0 & - & - & - & 2000  & 75   & 0 & 2000 & 0    &  0 \\
   \hline
 \end{tabular}
 
@@ -656,44 +704,6 @@ presence in RACF is foreseen going forward.
   2020 & 10&  100& 0&- &- &- & 2& 100& 0&- &- &-  \\
   \hline
 \end{tabular}
-
-%\input{letter}
-
-\pagebreak
-\section{Summary Tables}
-
-Summary of newly purchased hardware for each experiment and by type,
-rolled up over the five years.
-Units are as above.
-
-\begin{center}
-  
-\begin{tabular}[h]{|c||r|r|r|}
-\hline
-    & New CPU    & New Disk & New Tape \\
-    & (core/5yr) & (TB/5yr) & (TB/5yr) \\
-\hline
-Daya Bay & 0 & 0 & 0 \\
-\hline
-JUNO & 600 & 70 & 200 \\
-\hline
-LAr1-ND/SBN & 150 & 150 & 0 \\
-\hline
-DUNE & 640 & 2500 & 2000 \\
-\hline
-$\mu$BooNE & 200 & 100 & 0 \\
-\hline
-$\mu$ g-2 & 450 & 110 & 6000 \\
-\hline
-NA62 & 75 & 200 & 0 \\
-\hline
-Prospect & 150 & 30 & 0 \\
-\hline
-WbLS & 20 & 4 & 0 \\
-\hline
-\end{tabular}
-
-\end{center}
 
 
 

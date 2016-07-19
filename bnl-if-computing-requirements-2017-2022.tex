@@ -18,17 +18,12 @@
 
 \newpage
 \section{Overview}
-This report presents a few estimatea of the computing needs of
-the BNL Physics Department Intensity Frontier (IF) efforts for FYs
-2017-2022. The requirements presented are limited in scope to those
-that can be expected to be met by some manner of DOE funding which
-would come through BNL.
-
-Each of the following sections answers the information request for one
-experimental or R\&D effort in the BNL Intensity Frontier.
-Each gives a general description of the effort with a focus on its
-general computing requirements followed by a per-year breakdown of activity and
-milestones and an estimate of specific hardware requirements.
+This report presents estimates of the computing needs of
+the BNL Physics Department Intensity Frontier (IF) efforts for FY2017-2022.
+Each of the following sections provides  information for one
+experiment or R\&D effort in the BNL Intensity Frontier.
+In addition to general information, each section contains a g per-year breakdown of activity and
+milestones and resource estimates.
 
 \subsection{Current Status}
 
@@ -53,19 +48,19 @@ overlapping aspects.
 For example, MicroBooNE and DUNE  use the same detector
 simulation and reconstruction framework, and many of the same
 framework modules for their liquid argon detectors.
-
-
-This collection of projects can be placed across some spectrum from
-individual, one-off R\&D software to that needed for production
+Software and computing use cases cover a range of scenarios
+from individual one-off R\&D software projects to bona fide production
 processing and large scale data movement and storage.
-We have looked for ways to accommodate this spectrum in an efficient
+One has to look for ways to accommodate this spectrum in an efficient
 manner.  
 
 The main computing resource  we rely on to do this is the RHIC/ATLAS Computing
-Facility (RACF). Because the RACF is so efficient they have been able to provide Daya
-Bay and DUNE a modest footprint for a low direct cost to the experiments.
-To the extent that we do not add to the overall complexity of RACF we
-can be accommodated with minor incremental effort.
+Facility (RACF). Because the RACF is extremely efficient and embodies substantial computing
+expertise they have been able to provide Daya
+Bay and DUNE a modest footprint at a low direct cost to the experiments.
+The footprint of the Daya Bay and DUNE computing at RACF is illustrated in Table \ref{tab:bnlif_at_racf_2016}.
+Historically, to the extent that the IF computing does not add to the overall complexity of RACF it
+was accommodated with minor incremental effort.
 
 
 \begin{table}[tbh]
@@ -86,36 +81,35 @@ can be accommodated with minor incremental effort.
 
 \subsection{General Strategy}
 
-The BNL IF group intends to continue to leverage RACF.
-However, we have identified that the current model of equating an
-experiment with an RACF Unix account group does not scale well in our
-case. This is due to a substantial overlap in group membership
+The BNL IF group intends to continue to leverage RACF. In terms of managing accounts and resources,
+we find that the current model of equating an experiment with an RACF Unix account group does not
+scale well in our case. Some groups are quite small. There is also to a substantial overlap in group membership
 and functions performed by the personnel working in the IF research area.
 Without generalization, we note that in this particular case having an experiment-specific,
-fine-grained account management setup is cumbersome and complicates support unnecessarily,
-given the significant commonality in the work being done and tools utilized in the IF research.
+fine-grained account management setup is cumbersome and complicates the RACF support unnecessarily,
+given the significant commonality in the work being done and the tools utilized in the IF research.
 
 The other issue has to do with balancing the immediate and modest needs of
-some of the BNL IF experiments with the costs, minimal as they are, which are
-inherent in ``buying into'' the RACF.
-If an experiment only needs a fraction of a node now, it is more cost
-efficient if they can share part of an existing computer and to hold
+the smaller BNL IF experiments with the costs, minimal as they are, which are
+inherent in ``buying into'' the RACF. For example, if an experiment only needs a fraction of a node now (i.e. a few cores),
+it is more cost efficient if they can share part of an existing computer and to hold
 off purchases until their needs reach the level of at least full node.
+Same can be argued about storage and other computing needs.
 This has knock-on benefits that waiting always leads to more computing
 power for the same cost.
 
-Faced with this picture, it has been decided to form an umbrella group
-for future RACF hardware purchases and to share them among all BNL IF
-efforts. This will require some additional self-management by the IF members
-and group leaders but will reduce overall complexity and RACF will deal
-with a single entity instead of many fragmented ones.
+It appears optimal to form an IF umbrella group which will serve to consolidate future RACF hardware purchases
+and resource allocations and will then share them among all BNL IF efforts. This will require some additional
+self-management by the IF members and group leaders but will reduce overall complexity. The RACF personnel
+will need to deal with a single entity instead of a few, thus simplifying support and systems configuration.
 
-Consolidation can be achieved by directing all new RACF-related purchases by
-the BNL IF members through the new IF umbrella group. As a start,
-we will look into the feasibility of reconfiguring the existing Daya Bay and
-DUNE computers. Potential benefits of doing so are somewhat decreased
-by the fact that most of them are past their nominal
-end-of-life and the effort needed for such reconfiguration.
+%Consolidation can be achieved by directing all new RACF-related purchases by
+%the BNL IF members through the new IF umbrella group.
+
+Another activity of such umbrella group is reconfiguration of existing (older) computers,
+such as those which belong to the Daya Bay and DUNE clusters. However, potential benefits of doing
+this are somewhat decreased by the fact that most of these servers are past their nominal
+end-of-life and the effort that needs to be invested into such reconfiguration.
 
 \subsection{Caveats and Clarifications}
 
@@ -151,6 +145,148 @@ end-of-life.
 As discussed above, in reality, some longer service life may be
 realized.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{DUNE}
+\subsection{The Far Detector and its prototypes}
+The Deep Underground Neutrino Experiment (DUNE) has a variety of important goals that
+include:
+determination and detailed measurement of CP violation in the neutrino sector,
+neutrino mass hierarchy, search for proton decay and observation of neutrinos from supernovae.
+It will combine a powerful wide-bandwidth neutrino beam, a fine-grained Near Detector and
+the Far Detector based on a uniquely large Liquid Argon TPC (40kt fiducial mass). For the latter,
+there are two technologies being actively studied in DUNE: single-phase and dual-phase Liquid Argon TPCs.
+In order to validate both designs, an ambitious prototype program (``protoDUNE'') has been initiated which calls
+for construction and test-beam operation of two detectors at CERN in late 2018. The  prototypes are called ``full-scale''
+since both will incorporate principal structural elements (such as sensor electrode planes) built according to the scale
+of the full DUNE detector. Earlier in 2016, a smaller 35t LArTPC prototype took cosmic ray data at FNAL.
+
+The protoDUNE program is a challenging endeavor which will involve a large detector, state-of-the-art readout technology
+and signal processing, modern DAQ and other online systems and will require sophisticated calibrations
+and processing of a few PB of data. For this reason, in the next few years DUNE software and computing
+can be roughly described as two closely related
+categories -- DUNE and protoDUNE -- as described below:
+\begin{enumerate}
+
+\item DUNE
+\begin{itemize}
+\item General DUNE ``physics tools'' effort which includes the beam and target studies, the Near Detector
+simulation and reconstruction, and simulation and reconstruction with large-scale LAr TPCs of the Far Detector.
+
+\item DUNE DAQ and other online computing R\&D.
+
+\item General computing infrastructure for long-term use during the commissioning and operation of the experiment.
+\end{itemize}
+
+\item protoDUNE
+\begin{itemize}
+\item Near term infrastructure work such as design of protoDUNE DAQ and the online buffer
+\item Data transfer and management systems
+\item Calibration software, reconstruction algorithms and other application development to support the protoDUNE program.
+\end{itemize}
+\end{enumerate}
+
+\subsection{DUNE Computing at BNL}
+According to the DUNE Computing Model and the TDR under development at the time of writing,
+DUNE will implement a fully distributed data management system. Similar to other experiments,
+data (and raw data in parcicular) will be replicated to several locations. In addition to managed
+replicas existing at major computing sites, we expect that data to be  served to DUNE
+researchers and facilities through modern, highly bandwidth, low
+latency methods based on combination of XRootD and dCache. Small scale initial testing
+of such system took place in 2015, whereby the data residing in dCache at FNAL were read
+at BNL via XRootD.
+
+A useful outcome of implementing this system for use in DUNE will be to leverage
+investment in BNL's RACF, and to
+provide continuity of expertise necessary for the eventual
+full-experiment data taking, which according to some plans may take
+place around 2024, with a large portion of the Far Detector
+commissioned and taking initial data before the arrival of the beam.
+
+In the area of physics tools, BNL plays an important role in the development of reconstruction software for DUNE, and
+in particular a novel tomography-based approach for LArTPC reconstruction, called ``Wirecell''.
+
+
+\subsection{protoDUNE Computing Challenges}
+While there are still a few unknowns in the run plan and data characteristics of protoDUNE, certain
+reliable ``ballpark'' estimates have been created. Nominal number of events to be recorded by the single-phase
+protoDUNE detector is fixed at 25\,M, and the total amount of raw data is of the order of 3\,PB.
+
+\subsection{Activities and Milestones}
+\begin{description}
+\item[FY2016] \
+\begin{itemize}
+\item Analysis of the data taken in 2015 with the 35t Liquid Argon prototype at FNAL
+\item Characterization and improvement of reconstruction algorithms, Wirecell proof of principle and initial characterization
+\item Simulation and reconstriction development for the Near Neutrino Detector
+\item Initial preparations for the protoDUNE experiment at CERN (R\&D for DAQ and the online buffer, plans for detector characterization, reconstruction algorithms and framework)
+\item Workload Management System technology downselect
+\end{itemize}
+\item[FY2017] \
+\begin{itemize}
+\item protoDUNE: prototyping of the online buffer and its DAQ interface, functional and scalability testing
+\item protoDUNE: prototyping of the data management system, which will transport the data from the experiment to mass storage at CERN and FNAL, as well as other sites which potentially include BNL
+\item protoDUNE: integration of the beam instrumentation systems and data
+\item protoDUNE: data challenges involving a few distributed sites
+\item DUNE: advanced MC studies for rare and background-sensitive physics
+\item DUNE: improved Wircell reconstruction framework
+\end{itemize}
+
+\item[FY2018] \
+\begin{itemize}
+\item Installation of the protoDUNE detector at CERN, deployment and integration of the computing and software infrastructure for protoDUNE
+\item Readiness of the protoDUNE production and analysis software
+\item Commissioning and operation of protoDUNE at CERN
+\item Initial analysis of the protoDUNE data
+\end{itemize}
+
+\item[FY2019] \
+\begin{itemize}
+\item Reprocessing of the protoDUNE data
+\item Tune-up of reconstruction algorithms using the protoDUNE data
+\item DUNE: Initial Far Detector Technology downselect
+\item DUNE: Commencement of the Far Detector Stage 1 construction
+\item DUNE: Initial Front-End and Online Systems development
+\end{itemize}
+
+\item[FY2020-FY2022] \
+\begin{itemize}
+\item Continued detailed analysis of the protDUNE data
+\item Development and deployement of infrastructure for the data distribution and analysis for the 2024 run
+\item Deployment and testing of DAQ/Online systems
+\item Data challenges for MC and reconstruction, for 2021 readiness
+\end{itemize}
+\end{description}
+
+\noindent Numbers presented in the following section are based on our
+estimates of hardware investments necessary for BNL to meaningfully
+support these activities and milestones. 
+Our approach is to create a modest but functional pool of CPU power,
+and skew the planned hardware capability to storage, in order to meet
+relevant items of the software and computing requirements as mentioned
+above.  We assume no end-of-life for tapes.
+
+\subsection{Hardware}
+
+\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
+  \hline
+   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
+   \hline
+  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
+  \hline
+  2016  &  320 &  100   & 0 & - & - & - & 500 & 100 & 0 & 1000 & 100 &  0 \\
+  \hline
+  2017 &  320 &   0     & 0 & - & - & - & 1000  & 50 & 0 & 2000 & 50    &  0 \\
+  \hline
+  2018 &  320 &   0     & 0 & - & - & - & 1000  & 0   & 0 & 2000 & 0      &  0 \\
+  \hline
+  2019  &  320 &  0    & 0 & - & - & - & 1000  &  0 & 0 & 2000 & 0     &  0 \\
+  \hline
+  2020 &  320 &  100     & 0 & - & - & - & 2000  & 75   & 0 & 2000 & 0    &  0 \\
+  \hline
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
 \section{Daya Bay}
 
@@ -270,127 +406,6 @@ In the table below we do not count this MicroBooNE hardware.
 \end{tabular}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagebreak
-\section{DUNE}
-
-The Deep Underground Neutrino Experiment (DUNE) has a variety of important goals that
-include:
-determination and detailed measurement of CP violation in the neutrino sector,
-neutrino mass hierarchy, search for proton decay and observation of neutrinos from supernovae.
-It will combine a powerful wide-bandwidth neutrino beam, a fine-grained Near Detector and
-the Far Detector based on a uniquely large Liquid Argon TPC (40kt fiducial mass). For the latter,
-there are two technologies being actively studied in DUNE: single-phase and dual-phase Liquid Argon TPCs.
-In order to validate both designs, an ambitious prototype program (``protoDUNE'') has been initiated which calls
-for construction and test-beam operation of two detectors at CERN in late 2018. The  prototypes are called ``full-scale''
-since both will incorporate principal structural elements (such as sensor electrode planes) built according to the scale
-of the full DUNE detector. Earlier in 2016, a smaller 35t LArTPC prototype took cosmic ray data at FNAL.
-
-In terms of software and computing, DUNE activities can be roughly described as two closely related
-categories:
-\begin{itemize}
-
-\item General DUNE R\&D which includes the beam and target studies, the Near Detector simulation and reconstruction,
-and simulation and reconstruction with large-scale LAr TPCs of the Far Detector.
-
-\item Near term infrastructure work and application development to support the protoDUNE program.
-
-\end{itemize}
-
-
-According to the DUNE Computing Model and the TDR under development at the time of writing,
-DUNE will implement a fully distributed data management system. Similar to other experiments,
-data (and raw data in parcicular) will be replicated to several locations. In addition to managed
-replicas existing at major computing sites, we expect that data to be  served to DUNE
-researchers and facilities through modern, highly bandwidth, low
-latency methods based on combination of XRootD and dCache. Small scale initial testing
-of such system took place in 2015, whereby data residing in dCache at FNAL was read
-at BNL via XRootD.
-
-A useful outcome of implementing this system for use in DUNE will be to leverage
-investment in BNL's RACF, and to
-provide continuity of expertise necessary for the eventual
-full-experiment data taking, which according to some plans may take
-place around 2024, with a large portion of the Far Detector
-commissioned and taking initial data before the arrival of the beam.
-
-BNL plays an important role in the development of reconstruction software for DUNE, and
-in particular a novel tomography-based approach for LArTPC reconstruction, called ``Wirecell''.
-
-\subsection{Activities and Milestones}
-
-\begin{description}
-\item[FY2016] \
-\begin{itemize}
-\item Analysis of the data taken in 2015 with the 35t Liquid Argon prototype at FNAL
-\item Characterization and improvement of reconstruction algorithms, Wirecell proof of principle and initial characterization
-\item Simulation and reconstriction development for the Near Neutrino Detector
-\item Initial preparations for the protoDUNE experiment at CERN (R\&D for DAQ and the online buffer, plans for detector characterization, reconstruction algorithms and framework)
-\item Workload Management System technology downselect
-\end{itemize}
-\item[FY2017] \
-\begin{itemize}
-\item protoDUNE: prototyping of the online buffer and its DAQ interface, functional and scalability testing
-\item protoDUNE: prototyping of the data management system, which will transport the data from the experiment to mass storage at CERN and FNAL, as well as other sites which potentially include BNL
-\item protoDUNE: integration of the beam instrumentation systems and data
-\item protoDUNE: data challenges involving a few distributed sites
-\item DUNE: advanced MC studies for rare and background-sensitive physics
-\item DUNE: improved Wircell reconstruction framework
-\end{itemize}
-
-\item[FY2018] \
-\begin{itemize}
-\item Installation of the protoDUNE detector at CERN, deployment and integration of the computing and software infrastructure for protoDUNE
-\item Readiness of the protoDUNE production and analysis software
-\item Commissioning and operation of protoDUNE at CERN
-\item Initial analysis of the protoDUNE data
-\end{itemize}
-
-\item[FY2019] \
-\begin{itemize}
-\item Reprocessing of the protoDUNE data
-\item Tune-up of reconstruction algorithms using the protoDUNE data
-\item DUNE: Initial Far Detector Technology downselect
-\item DUNE: Commencement of the Far Detector Stage 1 construction
-\item DUNE: Initial Front-End and Online Systems development
-\end{itemize}
-
-\item[FY2020-FY2022] \
-\begin{itemize}
-\item Continued detailed analysis of the protDUNE data
-\item Development and deployement of infrastructure for the data distribution and analysis for the 2024 run
-\item Deployment and testing of DAQ/Online systems
-\item Data challenges for MC and reconstruction, for 2021 readiness
-\end{itemize}
-\end{description}
-
-\noindent Numbers presented in the following section are based on our
-estimates of hardware investments necessary for BNL to meaningfully
-support these activities and milestones. 
-Our approach is to create a modest but functional pool of CPU power,
-and skew the planned hardware capability to storage, in order to meet
-relevant items of the software and computing requirements as mentioned
-above.  We assume no end-of-life for tapes.
-
-\subsection{Hardware}
-
-\begin{tabular}[h]{|r || r|r|r || r|r|r || r|r|r || r|r|r ||}
-  \hline
-   & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
-   \hline
-  FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
-  \hline
-  2016  &  320 &  100   & 0 & - & - & - & 500 & 100 & 0 & 1000 & 100 &  0 \\
-  \hline
-  2017 &  320 &   0     & 0 & - & - & - & 1000  & 50 & 0 & 2000 & 50    &  0 \\
-  \hline
-  2018 &  320 &   0     & 0 & - & - & - & 1000  & 0   & 0 & 2000 & 0      &  0 \\
-  \hline
-  2019  &  320 &  0    & 0 & - & - & - & 1000  &  0 & 0 & 2000 & 0     &  0 \\
-  \hline
-  2020 &  320 &  100     & 0 & - & - & - & 2000  & 75   & 0 & 2000 & 0    &  0 \\
-  \hline
-\end{tabular}
 
 \pagebreak
 \section{MicroBooNE}
@@ -452,11 +467,6 @@ this section.
 The goal of the Muon $g-2$ Experiment E989 at Fermilab is to measure
 the muon anomalous magnetic moment, $a_\mu \equiv (g-2)/2$, to
 unprecedented precision of 0.14~parts per million (ppm).
-At the moment, the Muon $g-2$ collaboration consists from more than
-150~members from 30 institutions from 8 countries. 
-The baseline cost of the E989 Project is about \$48M.
-The E989 Project received CD-1 approval from DOE in December 2013; CD2
-review is expected in May 2015. 
 In the relevant 5 year period the Project will be progressing though
 the CD-3, CD-4, commissioning, physics data taking and data analysis.  
 
@@ -468,63 +478,27 @@ This translates into about two petabytes of data storage requirement
 to save the raw experimental data for the offline analysis. 
 To meet the systematics goal of E989, both dedicated measurements and
 detailed Monte Carlo simulations are needed. 
-The simulations require both CPU power and data storage capacity.  
-The complete end-to-end simulations are needed to address both
-beam-related and detector-related systematic uncertainties. 
-The simulations include the simulations of
-%
-{\em i)} pion production in the production target; 
-{\em ii)} pion capture by the beamline optics; 
-{\em iii)} pion transport; 
-{\em iv)} muon capture in the decay line;
-{\em v)} muon transport through the beamline to the $g-2$ storage ring; 
-{\em vi)} muon injection into the $g-2$ storage ring;
-{\em vii)} muon storage in the $g-2$ storage ring; 
-{\em viii)} muon decay in the storage ring and tracking of the decay positrons; 
-{\em ix)} detector response; 
-{\em x)} backgrounds. 
-
-The simulation software in E989 is based on the tools recognized by
+The simulations require both CPU power and storage capacity,
+and are based on the tools recognized by
 the HEP community such as {\tt Geant4}, {\tt ROOT}, {\tt MARS}, {\tt
   G4beamline}, {\tt MAD}, {\tt BMAD}. 
-The {\tt Art} framework was chosen by the collaboration as a universal
-data analysis and simulation framework.
-It allows to integrate different software tools into one system, it
-standardizes the event exchange between data producers and data
-consumers, it hides the complexity of low-level data input/output
-protocols, it provides a convenient way to vary the geometry of the
-apparatus as well as the running conditions, it provides a flexible
-mechanism of setting up sophisticated event selection conditions and
-it helps to reduce coding errors by encouraging the users to follow
-the principles recommended by the modern high-level programming
-languages.
+%The {\tt Art} framework was chosen by the collaboration as a universal
+%data analysis and simulation framework.
+%It allows to integrate different software tools into one system, it
+%standardizes the event exchange between data producers and data
+%consumers, it hides the complexity of low-level data input/output
+%protocols, it provides a convenient way to vary the geometry of the
+%apparatus as well as the running conditions, it provides a flexible
+%mechanism of setting up sophisticated event selection conditions and
+%it helps to reduce coding errors by encouraging the users to follow
+%the principles recommended by the modern high-level programming
+%languages.
 
 \subsection{Activities and Milestones}
 
-The E989 Project almost perfectly fits into the five-year plan of this
-Request. 
-The physics data taking is expected to start in FY2018. 
-Before FY2018 the collaboration will be conducting intensive Monte
-Carlo studies to support the Project development and construction. 
-The simulation software in E989 is in a mature state due to
-collaborative effort in software development. 
-In FY2015 the collaboration is planning to simulate the first
-high-statistics data sample of muon decays in the storage ring using
-an ideal muon beam ($2\times 10^7$ muon sample). 
-The plan is to use Femilab computing resources for this simulation
-task. 
-We expect that the design of the $g-2$ decay and transport beamlines
-will be finalized in FY2015 which will allow us to update the software
-model of the beamline end run the complete end-to-end simulations. 
-Thus, regarding the requested five-year term the plans are the
-following. 
 \begin{description}
 \item[FY2016] 
-Generate a $10^9$ muon sample in the storage ring using Femilab and BNL computing resources ($50\times50$ split between BNL and Fermilab).  
-  This task will require approximately 14M CPU hours total after optimization of the software code. 
-  The design of the $g-2$ beamline is finalized.  
-  Software model of the decay and transport line is updated. 
-  Generate a preliminary sample of muons at injection into the storage ring ($\approx 10^6$ muons)  starting upstream by simulating proton-target interactions in the production target and tracking all charged particles through the beamline. 
+Generate a $10^9$ muon sample in the storage ring (done mostly at FNAL)
 \item[FY2017] 
   Generate a high-statistics data sample using complete end-to-end simulations. 
   Analysis of systematic effects using the generated data sample. 
@@ -543,8 +517,10 @@ Generate a $10^9$ muon sample in the storage ring using Femilab and BNL computin
   The full statistics collected. Data analysis.  
 \end{description}
 
-Following the strategy of the previous Muon $g-2$ experiment at Brookhaven, the collaboration is planning to establish two or more parallel efforts of data analysis and evaluation of systematic uncertainties by independent groups of people and independent analysis algorithms. 
-Computing resources at BNL will be used for the independent analysis of the experimental data and to study the systematic effects. 
+\noindent Following the strategy of the previous Muon $g-2$ experiment at Brookhaven, the collaboration is
+planning to establish two or more parallel efforts of data analysis and evaluation of systematic uncertainties by
+independent groups of people and independent analysis algorithms.  Computing resources at BNL will be used for
+the independent analysis of the experimental data and to study the systematic effects. 
 The data storage requirements in the table below include the storage for both simulated and physics data. 
 
 \subsection{Hardware}
@@ -569,29 +545,18 @@ The data storage requirements in the table below include the storage for both si
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
-\section{Prospect}
+\section{PROSPECT}
 
 The PROSPECT reactor antineutrino experiment's goals are to understand
 reactor antineutrino emissions and resolve the "reactor anomaly". The
 PROSPECT collaboration is largely based in the US with approximately
 50 collaborators and is expected to grow to $\sim\!65$. 
-PROSPECT is planned as a two phase project. The cost of Phase I is
-estimated at \$3-4M.  
-The initial phase comprises a $\sim\!2$-ton target/detector
-approximately 7 meters("near") from the reactor. 
-The second phase would add a 10-ton target/detector fifteen
-meters("far") from the reactor.
-Both phases would measure $\bar\nu_e$ inverse beta decay interactions
+The experiment will measure $\bar\nu_e$ inverse beta decay interactions
 with segmented, ${}^6{\rm Li}$-loaded liquid scintillator (LiLS)
-detectors. Small prototype LiLS detectors have been and will be
-deployed at the compact High Flux Isotope Reactor (HFIR) at ORNL. 
-The segmentation permits a measurement of the distance between
-$\bar\nu_e$ production and detection, and the LiLS enables good energy
-resolution and background suppression via pulse-shape discrimination.
+detectors.
 
 The main computing resources for PROSPECT are expected to be LLNL and
-Yale University. 
-The BNL effort is on design and simulation of the passive shielding,
+Yale University. The BNL effort is on design and simulation of the passive shielding,
 simulation of calibration using short-lived radioactive isotopes
 dissolved in the liquid scintillator and analysis of detector
 data. The initial computing effort would leverage the Daya Bay RACF
@@ -599,9 +564,6 @@ hardware.
 \subsection{Activities and Milestones}
 
 \begin{description}
-\item[FY2015] Deployment of $\sim\!16$-module PROSPECT prototype at HFIR. 
-				Analysis of prototype data. 
-                Design of the Phase I 2-ton PROSPECT detector. 
 \item[FY2016] Construction and deployment of the Phase I 2-ton near detector at HFIR.
 				Analysis of Phase I detector data. R\&D towards a Phase II far detector.
 \item[FY2017] Near detector operation. Planning for far detector (if desired based on near
@@ -631,6 +593,7 @@ hardware.
   \hline
 \end{tabular}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
 \section{Water-based Liquid Scintillator R\&D}
 New techniques developed by the BNL electronic detector and neutrino
@@ -642,41 +605,20 @@ member, a full-time postdoc and occasional contributions from others
 in the electronic detector and neutrino \& nuclear chemistry groups.   
 The goals of the R\&D effort are to measure the properties of WbLS
 with sufficient detail to be able to predict the light yield for
-ionizing particles in large-scale detectors. 
-The important properties of WbLS are the quantum yield and light
-emission spectrum, absorption as a function of wavelength, the decay
-time distribution, stability over time and ability to withstand
-irradiation.
-The R\&D is supported by a BNL LDRD(FY2012-14), DOE Generic R\&D, and
-a BNL Technology Maturation Grant (FY2014-15). A SBIR entitled "An
-Active Water Phantom for Three-dimensional Proton Therapy Quality
-Assurance" (P.I. Steven Vigdor Senior Vice President of Phenix Medical
-and former BNL ALD) was submitted to the NIH in December 2014. If
-approved, funding is expected to begin in the last quarter of FY2015
-and extend through FY2018. Data were acquired for small prototype
-detectors in 2012-2014. Additional R\&D with small-scale prototypes is
-expected. 
-A modest-sized ($\sim\!1000$ liter) detector is being commissioned. 
-Besides use for proton therapy, WbLS-based detectors are being
-investigated for large scale neutrino and nucleon decay detectors, and
-for a T2K near detector upgrade.
+ionizing particles in large-scale detectors.
 
 The main computing effort is the analysis of prototype data and the development of a detailed
-simulation model. Computation has taken place on collaborator laptops and RACF.  
-A modest, but sustained, hardware presence in RACF is foreseen.
+simulation model. In addition, plans exist and work is under way to implement and commission a 
+$\sim$\,1000 liter WbLS detector.
 
+Computation work is done collaborators' laptops and RACF. A small, but sustained, hardware
+presence in RACF is foreseen going forward.
 
 \subsection{Activities and Milestones}
 
 \begin{description}
-\item[FY2015] Commissioning of $\sim\!1000$ liter detector. 
-				Irradiation of different WbLS formulations. 
-                Further characterization of WbLS.
-                Data analysis.
-\item[FY2016-18] Operation of $\sim\!1000$ liter detector.
-				Further characterization of WbLS.
-                Data analysis.
-                Participation in SBIR if accepted. 
+
+\item[FY2016-18] Operation of $\sim$\,1000 liter WbLS detector. Data analysis.
                 \item [FY2019-20] Characterization of WbLS. 
 \end{description}
 

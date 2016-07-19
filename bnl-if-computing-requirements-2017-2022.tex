@@ -19,7 +19,7 @@
 \newpage
 \section{Overview}
 This report presents a few estimatea of the computing needs of
-the BNL Physics Department Intensity Frontier efforts for FYs
+the BNL Physics Department Intensity Frontier (IF) efforts for FYs
 2017-2022. The requirements presented are limited in scope to those
 that can be expected to be met by some manner of DOE funding which
 would come through BNL.
@@ -61,75 +61,43 @@ processing and large scale data movement and storage.
 We have looked for ways to accommodate this spectrum in an efficient
 manner.  
 
-The main tool we rely on to do this is the RHIC/ATLAS Computing
-Facility (RACF).
-Because the RACF is so efficient they have been able to provide Daya
-Bay and LBNE a modest footprint for a low direct cost to the
-experiments.
-The nominal agreement is that the experiments pay for new hardware
-configured similarly and as part of larger purchases driven to support
-the main RACF tenants (ATLAS and the RHIC experiments).
-We then gain the benefit of ``free'' maintenance and support from
-RACF.
+The main computing resource  we rely on to do this is the RHIC/ATLAS Computing
+Facility (RACF). Because the RACF is so efficient they have been able to provide Daya
+Bay and DUNE a modest footprint for a low direct cost to the experiments.
 To the extent that we do not add to the overall complexity of RACF we
 can be accommodated with minor incremental effort.
-The other aspects of our agreement is that once we grow large enough
-to require $\sim$0.1 FTE of support from RACF we must renegotiate our
-arrangement in order to explicitly contribute to support costs.
-For the five years this report covers, we do not expect to reach that
-threshold.  
 
-The final, somewhat fortuitous benefit which Daya Bay and LBNE
-currently enjoy with RACF is due to a facility expansions driven by
-RACF long-term needs that occurred in the recent past.
-This expansion has allowed a relaxation on the nominal end-of-life
-requirement on our computers.
-Although the current nodes are no longer modern, they are still
-serviceable. 
-As the RACF expansion is filled we expect pressure will build to take
-them out of service.
-But for now, the extra life helps us delay replacement costs.
 
-\begin{center}
+\begin{table}[tbh]
+\centering
 \begin{tabular}[h]{|l|r|r|r|r|}
   \hline
   Exp. & Purchases & Nodes (boxes) & CPU (cores) & Disk (TB) \\
   \hline
   Daya Bay & 3 & 12 & 296 & 100 \\
   \hline
-  LBNE & 1 & 10 & 160 & 55 \\
+  DUNE & 1 & 10 & 160 & 55 \\
   \hline
 \end{tabular}
+\caption{The current (2016) BNL Intensity Frontier Research footprint in RACF.}
+\label{tab:bnlif_at_racf_2016}
 
-The current BNL IF footprint in RACF.
-\end{center}
+\end{table}
 
 \subsection{General Strategy}
 
 The BNL IF group intends to continue to leverage RACF.
-However we have identified that the current model of equating an
+However, we have identified that the current model of equating an
 experiment with an RACF Unix account group does not scale well in our
-case.
-In RACF, the Unix account groups are used to apply various usage
-policies such as defining batch queue priorities and which nodes a
-user in a group may access interactively.
-Unix users account may exist only in one group yet, has said above,
-the individual humans typically span multiple experiments.
-Thus, this requires an individual to maintain one RACF account for
-each experiment.
-This has proved cumbersome even for experimenters that work in both
-Daya Bay and LBNE.
-It is clear that if this fine-grained separation is scaled to all IF
-efforts and given their overlap in staffing, this organizational
-scheme would become unmanageable.
-On the other side of the coin, exposing such fine-grained groupings to
-RACF would needless complicate their management and support.
-In some cases, there are already duplicate support requests which are
-actually made for the same thing.
+case. This is due to a substantial overlap in group membership
+and functions performed by the personnel working in the IF research area.
+Without generalization, we note that in this particular case having an experiment-specific,
+fine-grained account management setup is cumbersome and complicates support unnecessarily,
+given the significant commonality in the work being done and tools utilized in the IF research.
 
-The other issue has to do with matching the immediate, modest needs of
-some of the BNL IF experiments to the costs, minimal as they are, to
-buying in to RACF.
+The other issue has to do with balancing the immediate and modest needs of
+some of the BNL IF experiments with the costs, minimal as they are, which are
+inherent in ``buying into'' the RACF.
 If an experiment only needs a fraction of a node now, it is more cost
 efficient if they can share part of an existing computer and to hold
 off purchases until their needs reach the level of at least full node.
@@ -138,24 +106,28 @@ power for the same cost.
 
 Faced with this picture, it has been decided to form an umbrella group
 for future RACF hardware purchases and to share them among all BNL IF
-efforts.
-This will require some additional self-management by the IF members
-but will reduce overall complexity and RACF will deal with a single
-entity instead of many fragmented ones.
-We will being this umbrella by directing all new purchase by BNL IF
-members to be placed in RACF under a new IF umbrella group.
-We will look into the feasibility to reconfigure existing Daya Bay and
-LBNE computers.
-The benefit of reconfiguring them needs to be balanced against the
-effort to do so and the fact that most of them are past their nominal
-end-of-life.
+efforts. This will require some additional self-management by the IF members
+and group leaders but will reduce overall complexity and RACF will deal
+with a single entity instead of many fragmented ones.
+
+Consolidation can be achieved by directing all new RACF-related purchases by
+the BNL IF members through the new IF umbrella group. As a start,
+we will look into the feasibility of reconfiguring the existing Daya Bay and
+DUNE computers. Potential benefits of doing so are somewhat decreased
+by the fact that most of them are past their nominal
+end-of-life and the effort needed for such reconfiguration.
 
 \subsection{Caveats and Clarifications}
 
+\subsubsection{Timeline}
+The timeline considered in this document covers FY2017 through FY2022 (nominally 5 years), however where needed
+the FY2016 activities are also listed to reflect important work being finalized at the time of writing.
+A few of the projects/experiments are scheduled to end before FY2022, which is reflected in the material presented.
+
 \subsubsection{Interpretation of Tables}
 
-Following the letter of request, we give tables of hardware
-requirements.
+In the following sections, tables of hardware
+requirements are presented.
 The ``Tot.'' column contains the total number of units that are
 estimated to be required per year.
 For CPU cores this we attempt to estimate the total number of CPU
@@ -168,19 +140,9 @@ The ``\%New'' columns indicate what portion of that years hardware
 unit is expected to be newly purchased that year on the assumption of
 the current ``Tot.'' value and given a four year end-of-life for any
 hardware from prior years.
-We interpret the ``\%Lab" columns to indicate any computing hardware,
+We use the ``\%Lab" columns to indicate any computing hardware,
 purchased through BNL, but not intended specifically to be used by the
-BNL IF efforts.
-In all cases, we expect no such hardware.
-
-
-\subsubsection{Experiments Pending Approval}
-
-The computing hardware requirements in support each of the JUNO, NA62
-and Prospect experiments at BNL are given under the assumption that
-BNL IF group involvement in those experiments will be approved and go
-forward.
-It is understood that involvement in these efforts is not yet certain.
+BNL IF efforts. In all cases, we expect no such hardware.
 
 \subsubsection{Hardware End of Life}
 
@@ -188,22 +150,6 @@ The numbers given for RACF hardware assume the nominal four year
 end-of-life.
 As discussed above, in reality, some longer service life may be
 realized.
-
-\subsubsection{Personal Computing Hardware}
-
-Some portion of personal computing (workstations and laptops) is used
-directly in support of IF computing.
-Besides the mundane email and document authoring, personal machines
-are used for software development, code building, analysis and some
-level of official simulation and data processing.
-These machines are not subject to the end-of-life requirements of RACF
-and tend to be longer lived.
-It is hard to quantify this category and so we do not include it in
-the detailed tables below. Instead we estimate that we require the
-equivalent of one or two new machines per year to be purchased across
-the BNL IF group.
-Extrapolating into FY 16-20 technology, a nominal machine would have
-10 CPU cores, 5 TB disk, 1 GPU and no tape hardware.
 
 \pagebreak
 \section{Daya Bay}
@@ -226,9 +172,9 @@ uncertainty dominates the uncertainty in the reactor flux measurement.
 The main computing resource in Daya Bay is PDSF at LBNL. BNL provides
 a node for automated building and testing of the Daya Bay software
 that uses approximately 1 CPU-core-hour each day and 200 GB of disk.
-We plan to use the existing RACF hardware for detailed simulation
-studies as well as some data analysis.  
-It is expected that existing nodes and opportunistic use can provide
+In addition, the existing RACF hardware has been used for simulation
+studies as well as some data analysis, and 
+it is expected that existing nodes and opportunistic use can provide
 the needed hardware and so no new purchase is expected.
 
 
@@ -250,8 +196,6 @@ the needed hardware and so no new purchase is expected.
    & \multicolumn{3}{c||}{Nominal CPU (cores)} & \multicolumn{3}{c||}{Special CPU} & \multicolumn{3}{c||}{Disk (TB)} & \multicolumn{3}{c||}{Tape (TB)} \\
    \hline
   FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
-  \hline
-  2016 & 200& 0& 0& -& -& -& 100& 0 & 0 & -& -& -\\
   \hline
   2017 & 150& 0& 0& -& -& -& 100& 0 & 0 & -& -& - \\
   \hline
@@ -275,7 +219,7 @@ the needed hardware and so no new purchase is expected.
 The Fermilab Short Baseline Neutrino program includes the construction
 of a Liquid Argon Near Detector, LAr1-ND, at 110 m from the Booster
 neutrino source in a new enclosure.
-It will serve as the near detector in a three LAr-TPC experiment
+It will serve as the near detector in a a few LAr-TPC experiments
 capable of definitively addressing existing anomalies in neutrino
 physics and making precision measurements of high-$\Delta m^2$
 neutrino oscillations through both appearance and disappearance
@@ -300,7 +244,7 @@ In the table below we do not count this MicroBooNE hardware.
 
 \begin{description}
 \item[FY2018] Initial commissioning and data taking with beam begins.
-\item[FY2019-2020] Analysis and publications
+\item[FY2019-2022] Analysis and publications
 \end{description}
 
 \subsection{Hardware}
@@ -311,8 +255,6 @@ In the table below we do not count this MicroBooNE hardware.
    \hline
   FY & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab & Tot. & \%New & \%Lab \\
   \hline
-  2016 &0 &0 &0 &   -& -& -& 0& 0& 0&- &- &- \\
-  \hline
   2017 &0 &0 &0 &   -& -& -& 0& 0& 0&- &- &- \\
   \hline
   2018 &50 & 100 &0& -& -& -&  50 & 100 & 0 &- &- &-  \\
@@ -321,6 +263,10 @@ In the table below we do not count this MicroBooNE hardware.
   \hline
   2020 &150 & 33& 0& -& -& -& 150 & 33 & 0 &- &- &-  \\
   \hline
+  2021 &150 & 0& 0& -& -& -& 150 & 0 & 0 &- &- &-  \\
+  \hline
+  2022 &150 & 0& 0& -& -& -& 150 & 0 & 0 &- &- &-  \\
+  \hline
 \end{tabular}
 
 
@@ -328,87 +274,48 @@ In the table below we do not count this MicroBooNE hardware.
 \pagebreak
 \section{DUNE}
 
-The Long Baseline Neutrino Experiment (LBNE) has a variety of important goals that
+The Deep Underground Neutrino Experiment (DUNE) has a variety of important goals that
 include:
 determination and detailed measurement of CP violation in the neutrino sector,
-neutrino mass hierarchy,
-search for proton decay and
-observation of neutrinos from supernovae.
+neutrino mass hierarchy, search for proton decay and observation of neutrinos from supernovae.
+It will combine a powerful wide-bandwidth neutrino beam, a fine-grained Near Detector and
+the Far Detector based on a uniquely large Liquid Argon TPC (40kt fiducial mass). For the latter,
+there are two technologies being actively studied in DUNE: single-phase and dual-phase Liquid Argon TPCs.
+In order to validate both designs, an ambitious prototype program (``protoDUNE'') has been initiated which calls
+for construction and test-beam operation of two detectors at CERN in late 2018. The  prototypes are called ``full-scale''
+since both will incorporate principal structural elements (such as sensor electrode planes) built according to the scale
+of the full DUNE detector. Earlier in 2016, a smaller 35t LArTPC prototype took cosmic ray data at FNAL.
+
+In terms of software and computing, DUNE activities can be roughly described as two closely related
+categories:
+\begin{itemize}
+
+\item General DUNE R\&D which includes the beam and target studies, the Near Detector simulation and reconstruction,
+and simulation and reconstruction with large-scale LAr TPCs of the Far Detector.
+
+\item Near term infrastructure work and application development to support the protoDUNE program.
+
+\end{itemize}
 
 
-In 2014, the Collaboration included over 500 collaborators from 92
-institutions in 10 countries, and the project was led by FNAL.
-The total cost is a matter of ongoing study and optimization but is
-expected to be in the \$1B range including a neutrino beamline and
-target complex, near neutrino detector at FNAL, and Liquid Argon
-detectors at the Far Site at Homestake (South Dakota). Also included
-are prototype Liquid Argon detectors (and their elements such as the
-Photon Detection System) and other prototypes whose construction is
-necessary in order to optimize detector characteristics and in
-particular understand how to scale up from current detector volumes to
-the final Far Detector which will contain tens of kilotons of
-instrumented cryogenic medium.
-
-Following the outcome of P5 deliberations, LBNE is currently in a
-period of transition into a wider collaboration with more significant
-international participation, with FNAL serving as the base and the
-facility for conducting neutrino experiments.
-A new factor in this development is consideration of the two-phase
-argon technology for the Far Detector. While this will potentially
-allow a more optimal final design of the detector, it poses additional
-challenges in multiple areas of R\&D as well as software and
-computing.
-
-As a result, the next few years present even more unknowns than
-normally exist due to the nature of any large, long-running
-experiment. For the purposes of this report we note that LBNE software
-and computing was reviewed by the DOE in April 2014 and we shall here
-assume continuity of the development as it was planned in 2014.  
-E.g. base our assumption on the single-phase detector option
-(currently supported by active R\&D based at FNAL).
-We have now expanded this to include the CERN Full Scale Test,
-described more below.
-
-The overall computing needs for the full LBNE are driven by the amount
-of shielding from sources of cosmogenic background, as determined by
-its Far Detector depth and importantly by the energy threshold chosen
-for the zero suppression algorithms deployed to the front-end
-electronics.
-
-According to our existing plans, the bulk of storage and a significant
-portion of the processing capacity is expected to be supplied by
-FNAL. 
-We do not need to go into detail of FNAL facility here and will
-concentrate on BNL.
-IF research at BNL will be deployed and operated in close cooperation
-with the RHIC and ATLAS
-Computing Facility (RACF). 
-While more general evolution of  RACF  is
-out of scope for this report,
-our IF working groups start planning for the future by maintaining a
-footprint in RACF to serve more
-immediate needs of our researchers as we develop approaches to scale
-up to the eventual full
-experiment.
-
-
-One of LBNE's computing requirements (adopted by the Collaboration and
-presented to DOE) states that we must store the precious raw data in
-more than one location.
-Over the five years covered by this report, it is BNL's intention to
-satisfy this requirement by providing a data center capable of storing
-data collected from the \textbf{35t} prototype of the Liquid Argon TPC
-and the CERN Full Scale Test \textbf{(FST)} detector.
-This would be in addition to a copy held at FNAL.
-We expect these data to be populated and then served to LBNE
+According to the DUNE Computing Model and the TDR under development at the time of writing,
+DUNE will implement a fully distributed data management system. Similar to other experiments,
+data (and raw data in parcicular) will be replicated to several locations. In addition to managed
+replicas existing at major computing sites, we expect that data to be  served to DUNE
 researchers and facilities through modern, highly bandwidth, low
-latency methods based on XrootD and dCache.
-A secondary outcome of implementing this system will be to retain
-investment in BNL's RACF for the use of BNL LBNE collaborators and to
+latency methods based on combination of XRootD and dCache. Small scale initial testing
+of such system took place in 2015, whereby data residing in dCache at FNAL was read
+at BNL via XRootD.
+
+A useful outcome of implementing this system for use in DUNE will be to leverage
+investment in BNL's RACF, and to
 provide continuity of expertise necessary for the eventual
 full-experiment data taking, which according to some plans may take
-place as early as 2021, with a large portion of the Far Detector
+place around 2024, with a large portion of the Far Detector
 commissioned and taking initial data before the arrival of the beam.
+
+BNL plays an important role in the development of reconstruction software for DUNE, and
+in particular a novel tomography-based approach for LArTPC reconstruction, called ``Wirecell''.
 
 \subsection{Activities and Milestones}
 
@@ -416,33 +323,42 @@ commissioned and taking initial data before the arrival of the beam.
 \item[FY2016] \
 \begin{itemize}
 \item Analysis of the data taken in 2015 with the 35t Liquid Argon prototype at FNAL
-\item Characterization and improvement of reconstruction algorithms
+\item Characterization and improvement of reconstruction algorithms, Wirecell proof of principle and initial characterization
 \item Simulation and reconstriction development for the Near Neutrino Detector
-\item Preparations for the FST at CERN (DAQ/online, detector characterization, reconstruction)
+\item Initial preparations for the protoDUNE experiment at CERN (R\&D for DAQ and the online buffer, plans for detector characterization, reconstruction algorithms and framework)
+\item Workload Management System technology downselect
 \end{itemize}
 \item[FY2017] \
 \begin{itemize}
-\item  Commissioning and operation of the FST prototype at CERN
-\item Initial analysis of the FST data
-\item Advanced MC studies for rare and background-sensitive physics
+\item protoDUNE: prototyping of the online buffer and its DAQ interface, functional and scalability testing
+\item protoDUNE: prototyping of the data management system, which will transport the data from the experiment to mass storage at CERN and FNAL, as well as other sites which potentially include BNL
+\item protoDUNE: integration of the beam instrumentation systems and data
+\item protoDUNE: data challenges involving a few distributed sites
+\item DUNE: advanced MC studies for rare and background-sensitive physics
+\item DUNE: improved Wircell reconstruction framework
 \end{itemize}
 
 \item[FY2018] \
 \begin{itemize}
-\item Tune-up of reconstruction algorithms using the FST data
-\item Far Detector Technology downselect
-\item Commencement of the Far Detector Stage 1 construction
-\item Initial Front-End and Online Systems development
+\item Installation of the protoDUNE detector at CERN, deployment and integration of the computing and software infrastructure for protoDUNE
+\item Readiness of the protoDUNE production and analysis software
+\item Commissioning and operation of protoDUNE at CERN
+\item Initial analysis of the protoDUNE data
 \end{itemize}
 
 \item[FY2019] \
 \begin{itemize}
-\item Continued analysis of the CERN FST data
-\item Development and deployement of infrastructure for the data distribution and analysis for the 2021 run
+\item Reprocessing of the protoDUNE data
+\item Tune-up of reconstruction algorithms using the protoDUNE data
+\item DUNE: Initial Far Detector Technology downselect
+\item DUNE: Commencement of the Far Detector Stage 1 construction
+\item DUNE: Initial Front-End and Online Systems development
 \end{itemize}
 
-\item[FY2020] \
+\item[FY2020-FY2022] \
 \begin{itemize}
+\item Continued detailed analysis of the protDUNE data
+\item Development and deployement of infrastructure for the data distribution and analysis for the 2024 run
 \item Deployment and testing of DAQ/Online systems
 \item Data challenges for MC and reconstruction, for 2021 readiness
 \end{itemize}
@@ -806,7 +722,7 @@ JUNO & 600 & 70 & 200 \\
 \hline
 LAr1-ND/SBN & 150 & 150 & 0 \\
 \hline
-LBNE & 640 & 2500 & 2000 \\
+DUNE & 640 & 2500 & 2000 \\
 \hline
 $\mu$BooNE & 200 & 100 & 0 \\
 \hline
